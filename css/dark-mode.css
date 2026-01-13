@@ -1,0 +1,648 @@
+/* ================================================
+   SPC Online - Night Mode CSS (Deep Purple Theme)
+   For Night Prayers and Evening Devotions
+   ================================================ */
+
+/* ===== NIGHT MODE ROOT VARIABLES ===== */
+body.dark-mode {
+  --color-primary: #E6B566;
+  --color-secondary: #A8B5E0;
+  --color-accent: #F5C968;
+  --color-bg: #1a1525;
+  --color-bg-alt: #252035;
+  --color-text: #F5F3F0;
+  --color-text-light: #C5C3C0;
+  --color-border: #3d3550;
+  --color-shadow: rgba(26, 21, 37, 0.3);
+  --color-purple-glow: rgba(102, 126, 234, 0.15);
+}
+
+/* ===== NIGHT MODE BODY ===== */
+body.dark-mode {
+  background-color: var(--color-bg) !important;
+  color: var(--color-text) !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ===== NIGHT MODE CARDS & CONTAINERS ===== */
+body.dark-mode .col-md-8[style*="background-color"],
+body.dark-mode .card-body {
+  background-color: var(--color-bg-alt) !important;
+  border-color: var(--color-border) !important;
+  color: var(--color-text) !important;
+  box-shadow: 0 2px 12px var(--color-shadow), 
+              0 0 20px var(--color-purple-glow) !important;
+}
+
+body.dark-mode .col-md-8[style*="background-color"]:hover {
+  box-shadow: 0 4px 16px var(--color-shadow), 
+              0 0 30px var(--color-purple-glow) !important;
+}
+
+body.dark-mode .prayer-content-card {
+  background-color: var(--color-bg-alt) !important;
+  border: 1px solid var(--color-border) !important;
+  box-shadow: 0 2px 12px var(--color-shadow), 
+              0 0 20px var(--color-purple-glow) !important;
+}
+
+body.dark-mode .card {
+  background-color: var(--color-bg-alt) !important;
+  border-color: var(--color-border) !important;
+  box-shadow: 0 1px 6px var(--color-shadow) !important;
+}
+
+/* ===== NIGHT MODE NAVIGATION ===== */
+body.dark-mode #mainNav {
+  background-color: #2d2640 !important;
+  box-shadow: 0 2px 8px var(--color-shadow);
+  border-bottom: 1px solid var(--color-border);
+}
+
+body.dark-mode #mainNav.navbar-scrolled {
+  background-color: rgba(45, 38, 64, 0.98) !important;
+}
+
+body.dark-mode .navbar-brand {
+  color: var(--color-primary) !important;
+}
+
+body.dark-mode .navbar-brand:hover {
+  color: var(--color-accent) !important;
+}
+
+body.dark-mode .nav-link {
+  color: var(--color-text) !important;
+}
+
+body.dark-mode .nav-link:hover,
+body.dark-mode .nav-link:focus {
+  color: var(--color-primary) !important;
+  background-color: var(--color-bg-alt);
+}
+
+/* ===== NIGHT MODE DROPDOWNS ===== */
+body.dark-mode .dropdown-menu {
+  background-color: #2d2640;
+  border-color: var(--color-border);
+  box-shadow: 0 4px 16px var(--color-shadow), 
+              0 0 20px var(--color-purple-glow);
+  scrollbar-color: var(--color-primary) var(--color-bg-alt);
+}
+
+body.dark-mode .dropdown-menu::-webkit-scrollbar-track {
+  background: var(--color-bg-alt);
+}
+
+body.dark-mode .dropdown-menu::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary);
+}
+
+body.dark-mode .dropdown-item {
+  color: var(--color-text) !important;
+}
+
+body.dark-mode .dropdown-item:hover,
+body.dark-mode .dropdown-item:focus {
+  background-color: var(--color-bg-alt) !important;
+  color: var(--color-accent) !important;
+}
+
+/* ===== NIGHT MODE MASTHEAD/HEADER ===== */
+body.dark-mode .masthead .overlay {
+  background-color: rgba(26, 21, 37, 0.6);
+}
+
+body.dark-mode .masthead .site-heading h2,
+body.dark-mode .masthead .site-heading h4 {
+  text-shadow: 2px 2px 10px rgba(26, 21, 37, 0.9);
+}
+
+/* ===== NIGHT MODE PAGE BACKGROUNDS ===== */
+body.dark-mode.prayer-page-container {
+  background: linear-gradient(135deg, #1a1525 0%, #252035 100%) !important;
+}
+
+body.dark-mode.dashboard-container {
+  background-color: var(--color-bg) !important;
+}
+
+/* ===== DARK MODE TYPOGRAPHY ===== */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6 {
+  color: var(--color-primary) !important;
+}
+
+body.dark-mode h1 {
+  border-bottom-color: var(--color-accent);
+}
+
+body.dark-mode h3 {
+  color: var(--color-secondary) !important;
+}
+
+body.dark-mode p,
+body.dark-mode .card-text,
+body.dark-mode center,
+body.dark-mode div,
+body.dark-mode span,
+body.dark-mode li,
+body.dark-mode b,
+body.dark-mode strong,
+body.dark-mode em,
+body.dark-mode i {
+  color: var(--color-text) !important;
+}
+
+body.dark-mode a {
+  color: var(--color-primary);
+}
+
+body.dark-mode a:hover,
+body.dark-mode a:focus {
+  color: var(--color-accent);
+}
+
+/* Force override inline color styles in dark mode */
+body.dark-mode font[color],
+body.dark-mode [style*="color: red"],
+body.dark-mode [style*="color:red"],
+body.dark-mode [style*="color:#"],
+body.dark-mode [style*="color: #"] {
+  color: var(--color-accent) !important;
+}
+
+/* ===== NIGHT MODE FOOTER ===== */
+body.dark-mode footer,
+body.dark-mode .universal-footer {
+  background-color: #2d2640 !important;
+  border-top: 1px solid var(--color-border);
+}
+
+body.dark-mode footer .copyright {
+  color: var(--color-text-light) !important;
+}
+
+body.dark-mode footer .fa-circle {
+  color: var(--color-primary);
+}
+
+/* ===== NIGHT MODE IMAGES ===== */
+body.dark-mode img:not(.pwa-control-icon):not(.icon) {
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+body.dark-mode img:not(.pwa-control-icon):not(.icon):hover {
+  opacity: 1;
+}
+
+/* Reduce brightness of background images */
+body.dark-mode .masthead {
+  position: relative;
+}
+
+body.dark-mode .masthead::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(26, 21, 37, 0.4);
+  pointer-events: none;
+}
+
+/* ===== DARK MODE BORDERS & HR ===== */
+body.dark-mode hr {
+  border-color: var(--color-border);
+  opacity: 0.3;
+}
+
+body.dark-mode .border {
+  border-color: var(--color-border) !important;
+}
+
+/* ===== DARK MODE FORMS & INPUTS ===== */
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+  background-color: var(--color-bg-alt);
+  border-color: var(--color-border);
+  color: var(--color-text);
+}
+
+body.dark-mode input:focus,
+body.dark-mode textarea:focus,
+body.dark-mode select:focus {
+  background-color: var(--color-bg);
+  border-color: var(--color-primary);
+  color: var(--color-text);
+}
+
+/* ===== DARK MODE BUTTONS ===== */
+body.dark-mode .btn {
+  border-color: var(--color-border);
+}
+
+body.dark-mode .btn-primary {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-bg);
+}
+
+body.dark-mode .btn-primary:hover {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+/* ===== DARK MODE FOCUS STATES ===== */
+body.dark-mode a:focus,
+body.dark-mode button:focus,
+body.dark-mode .nav-link:focus,
+body.dark-mode .dropdown-item:focus {
+  outline-color: var(--color-accent);
+}
+
+body.dark-mode *:focus-visible {
+  outline-color: var(--color-accent);
+}
+
+/* ===== DARK MODE ACCESSIBILITY ===== */
+body.dark-mode ::selection {
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+}
+
+body.dark-mode ::-moz-selection {
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+}
+
+/* ===== DARK MODE SCROLLBAR ===== */
+body.dark-mode::-webkit-scrollbar {
+  width: 12px;
+}
+
+body.dark-mode::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+body.dark-mode::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary);
+  border-radius: 6px;
+  border: 3px solid var(--color-bg);
+}
+
+body.dark-mode {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) var(--color-bg);
+}
+
+/* ===== DARK MODE HAMBURGER MENU ===== */
+body.dark-mode .navbar-toggler {
+  background-color: #2d2640 !important;
+  border-color: #f5c968 !important;
+  padding: 0.5rem 0.75rem;
+}
+
+body.dark-mode .navbar-toggler-icon {
+  filter: brightness(0) invert(1);
+}
+
+body.dark-mode .navbar-toggler:focus {
+  box-shadow: 0 0 0 0.2rem rgba(245, 201, 104, 0.5) !important;
+  outline: none;
+}
+
+body.dark-mode .navbar-collapse {
+  background-color: #2d2640 !important;
+}
+
+body.dark-mode .navbar-nav {
+  background-color: #2d2640 !important;
+}
+
+@media (max-width: 991px) {
+  body.dark-mode .navbar-collapse {
+    background-color: #2d2640 !important;
+    border-top: 1px solid var(--color-border);
+    margin-top: 1rem;
+    padding: 1rem 0;
+  }
+  
+  body.dark-mode .nav-link {
+    border-bottom: 1px solid var(--color-border);
+  }
+}
+
+/* ===== DARK MODE BLOCKQUOTES ===== */
+body.dark-mode blockquote {
+  color: var(--color-text-light);
+  border-left-color: var(--color-primary);
+}
+
+/* ===== DARK MODE TABLES ===== */
+body.dark-mode table {
+  color: var(--color-text);
+}
+
+body.dark-mode table th,
+body.dark-mode table td {
+  border-color: var(--color-border);
+}
+
+body.dark-mode table thead {
+  background-color: var(--color-bg-alt);
+}
+
+body.dark-mode table tbody tr:hover {
+  background-color: var(--color-bg-alt);
+}
+
+/* ===== DARK MODE CODE BLOCKS ===== */
+body.dark-mode code,
+body.dark-mode pre {
+  background-color: var(--color-bg-alt);
+  color: var(--color-accent);
+  border-color: var(--color-border);
+}
+
+/* ===== DARK MODE BADGES & LABELS ===== */
+body.dark-mode .badge {
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+}
+
+/* ===== SMOOTH TRANSITION BETWEEN MODES ===== */
+body,
+#mainNav,
+.col-md-8,
+.dropdown-menu,
+.nav-link,
+.dropdown-item,
+h1, h2, h3, h4, h5, h6,
+p, a, footer {
+  transition: background-color 0.3s ease, 
+              color 0.3s ease, 
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+/* ===== DARK MODE PRINT OVERRIDE ===== */
+@media print {
+  body.dark-mode {
+    background: white !important;
+    color: black !important;
+  }
+  
+  body.dark-mode .col-md-8[style*="background-color"] {
+    background: white !important;
+    color: black !important;
+  }
+  
+  body.dark-mode h1,
+  body.dark-mode h2,
+  body.dark-mode h3,
+  body.dark-mode h4,
+  body.dark-mode h5,
+  body.dark-mode h6,
+  body.dark-mode p {
+    color: black !important;
+  }
+}
+
+/* ===== DARK MODE LOADING STATES ===== */
+body.dark-mode .loading {
+  opacity: 0.4;
+}
+
+/* ===== NIGHT MODE SHADOWS ===== */
+body.dark-mode .shadow,
+body.dark-mode .shadow-sm {
+  box-shadow: 0 0.125rem 0.25rem var(--color-shadow) !important;
+}
+
+body.dark-mode .shadow-lg {
+  box-shadow: 0 1rem 3rem var(--color-shadow), 
+              0 0 30px var(--color-purple-glow) !important;
+}
+
+/* ===== NIGHT MODE DASHBOARD HEADER ===== */
+body.dark-mode .dashboard-header {
+  background: linear-gradient(135deg, #5568d3 0%, #6B46C1 100%) !important;
+}
+
+/* ===== DARK MODE QUICK ACTION BUTTONS ===== */
+body.dark-mode .action-btn {
+  background: var(--color-bg-alt) !important;
+  border-color: var(--color-border) !important;
+  color: var(--color-text) !important;
+}
+
+body.dark-mode .action-btn:hover {
+  background: var(--color-bg) !important;
+  border-color: var(--color-primary) !important;
+}
+
+body.dark-mode .action-btn-label {
+  color: var(--color-text) !important;
+}
+
+body.dark-mode .action-btn-icon {
+  opacity: 0.9;
+}
+
+/* ===== DARK MODE PRAYER SETTINGS ===== */
+body.dark-mode .settings-card {
+  background: var(--color-bg-alt) !important;
+  border-color: var(--color-border) !important;
+}
+
+body.dark-mode .setting-item {
+  background: #2d2640 !important;
+  border: 1px solid var(--color-border) !important;
+}
+
+body.dark-mode .setting-item:hover {
+  background: #3d3550 !important;
+  border-color: var(--color-primary) !important;
+}
+
+body.dark-mode .setting-title {
+  color: var(--color-text) !important;
+}
+
+body.dark-mode .setting-description {
+  color: var(--color-text-light) !important;
+}
+
+body.dark-mode .toggle-slider {
+  background-color: #3d3550 !important;
+}
+
+body.dark-mode .toggle-slider:before {
+  background-color: var(--color-text) !important;
+}
+
+body.dark-mode .info-card {
+  background: rgba(102, 126, 234, 0.1) !important;
+  border-color: var(--color-border) !important;
+}
+
+body.dark-mode .info-card p {
+  color: var(--color-text-light) !important;
+}
+
+body.dark-mode .settings-actions {
+  border-top-color: var(--color-border) !important;
+}
+
+/* ===== DARK MODE PRAYER STATS ===== */
+body.dark-mode #most-prayed div,
+body.dark-mode #week-view div,
+body.dark-mode #month-calendar div {
+  color: var(--color-text) !important;
+}
+
+body.dark-mode [style*="background: var(--bg-secondary)"],
+body.dark-mode [style*="background: var(--light-bg)"] {
+  background: var(--color-bg-alt) !important;
+}
+
+/* ===== DARK MODE INLINE STYLES OVERRIDE ===== */
+body.dark-mode [style*="color: var(--text-secondary)"] {
+  color: var(--color-text-light) !important;
+}
+
+body.dark-mode [style*="color: var(--text-primary)"] {
+  color: var(--color-text) !important;
+}
+
+/* ===== DARK MODE BOOKMARKS PANEL ===== */
+body.dark-mode .bookmarks-panel {
+  background: var(--color-bg-alt) !important;
+  border-left: 1px solid var(--color-border) !important;
+}
+
+body.dark-mode .bookmarks-header {
+  background: #2d2640 !important;
+  border-bottom: 1px solid var(--color-border) !important;
+}
+
+body.dark-mode .bookmarks-header h3 {
+  color: var(--color-primary) !important;
+}
+
+body.dark-mode .close-panel {
+  color: var(--color-text-light) !important;
+}
+
+body.dark-mode .close-panel:hover {
+  color: var(--color-accent) !important;
+}
+
+body.dark-mode .bookmark-item {
+  background: var(--color-bg) !important;
+  border: 1px solid var(--color-border);
+}
+
+body.dark-mode .bookmark-item:hover {
+  background: #2d2640 !important;
+}
+
+body.dark-mode .bookmark-link {
+  color: var(--color-text) !important;
+}
+
+body.dark-mode .bookmark-link:hover {
+  color: var(--color-accent) !important;
+}
+
+body.dark-mode .remove-bookmark {
+  color: var(--color-text-light) !important;
+}
+
+body.dark-mode .remove-bookmark:hover {
+  color: #ff6b6b !important;
+}
+
+body.dark-mode .empty-state {
+  color: var(--color-text-light) !important;
+}
+/* ===== DARK MODE CONCORDANCE STYLES ===== */
+body.dark-mode .concordance-section h3 {
+  color: var(--color-primary) !important;
+  border-bottom-color: var(--color-primary) !important;
+}
+
+body.dark-mode .search-box input {
+  background-color: var(--color-bg-alt) !important;
+  border-color: var(--color-border) !important;
+  color: var(--color-text) !important;
+}
+
+body.dark-mode .search-box input:focus {
+  border-color: var(--color-primary) !important;
+}
+
+body.dark-mode .search-box input::placeholder {
+  color: var(--color-text-light) !important;
+}
+
+body.dark-mode .concordance-item {
+  border-bottom-color: var(--color-border) !important;
+}
+
+body.dark-mode .concordance-ref {
+  color: var(--color-text) !important;
+}
+
+body.dark-mode .concordance-context {
+  color: var(--color-text-light) !important;
+}
+
+body.dark-mode .section-tag {
+  background: var(--color-bg-alt) !important;
+  color: var(--color-accent) !important;
+  border: 1px solid var(--color-border);
+}
+
+body.dark-mode .theme-item {
+  background: var(--color-bg-alt) !important;
+  border: 1px solid var(--color-border);
+}
+
+body.dark-mode .theme-title {
+  color: var(--color-text) !important;
+}
+
+body.dark-mode .theme-description {
+  color: var(--color-text-light) !important;
+}
+
+body.dark-mode .section-card {
+  background: var(--color-bg-alt) !important;
+  border-color: var(--color-border) !important;
+}
+
+body.dark-mode .section-number {
+  color: var(--color-primary) !important;
+}
+
+body.dark-mode .section-title-card {
+  color: var(--color-text) !important;
+}
+
+body.dark-mode .section-part {
+  color: var(--color-text-light) !important;
+}
+
+body.dark-mode .no-results,
+body.dark-mode .loading {
+  color: var(--color-text-light) !important;
+}

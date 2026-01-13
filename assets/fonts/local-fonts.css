@@ -1,0 +1,125 @@
+/* Local Font Fallbacks for Offline Capacitor App */
+/* Replaces Google Fonts CDN with system fonts optimized for mobile */
+
+/* Lora Font Family - Elegant serif for headings */
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Georgia'), local('Times New Roman'), local('serif');
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Georgia Italic'), local('Times New Roman Italic'), local('serif');
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Georgia Bold'), local('Times New Roman Bold'), local('serif');
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Georgia Bold Italic'), local('Times New Roman Bold Italic'), local('serif');
+}
+
+/* Open Sans Font Family - Clean sans-serif for body text */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: local('Segoe UI Light'), local('Helvetica Neue Light'), local('Arial'), local('sans-serif');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Segoe UI'), local('Helvetica Neue'), local('Arial'), local('sans-serif');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Segoe UI Semibold'), local('Helvetica Neue Medium'), local('Arial Bold'), local('sans-serif');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Segoe UI Bold'), local('Helvetica Neue Bold'), local('Arial Bold'), local('sans-serif');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: local('Segoe UI Bold'), local('Helvetica Neue Bold'), local('Arial Black'), local('sans-serif');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+  src: local('Segoe UI Light Italic'), local('Helvetica Neue Light Italic'), local('Arial Italic'), local('sans-serif');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Segoe UI Italic'), local('Helvetica Neue Italic'), local('Arial Italic'), local('sans-serif');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Segoe UI Semibold Italic'), local('Helvetica Neue Medium Italic'), local('Arial Bold Italic'), local('sans-serif');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Segoe UI Bold Italic'), local('Helvetica Neue Bold Italic'), local('Arial Bold Italic'), local('sans-serif');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 800;
+  font-display: swap;
+  src: local('Segoe UI Bold Italic'), local('Helvetica Neue Bold Italic'), local('Arial Black Italic'), local('sans-serif');
+}
+
+/* System Font Stack as Universal Fallback */
+body {
+  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Lora', Georgia, 'Times New Roman', Times, serif;
+}

@@ -1,0 +1,49 @@
+{
+  "appId": "com.spc.online",
+  "appName": "SPC Online",
+  "webDir": "www",
+  "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https",
+    "allowNavigation": [
+      "*"
+    ]
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 2000,
+      "launchAutoHide": true,
+      "backgroundColor": "#667eea",
+      "androidSplashResourceName": "splash",
+      "androidScaleType": "CENTER_CROP",
+      "showSpinner": false,
+      "androidSpinnerStyle": "large",
+      "iosSpinnerStyle": "small",
+      "spinnerColor": "#ffffff"
+    },
+    "StatusBar": {
+      "style": "light",
+      "backgroundColor": "#667eea"
+    },
+    "Keyboard": {
+      "resize": "body",
+      "style": "dark",
+      "resizeOnFullScreen": true
+    }
+  },
+  "android": {
+    "allowMixedContent": false,
+    "backgroundColor": "#ffffff",
+    "buildOptions": {
+      "keystorePath": "",
+      "keystorePassword": "",
+      "keystoreAlias": "",
+      "keystoreAliasPassword": "",
+      "releaseType": "APK"
+    }
+  },
+  "ios": {
+    "contentInset": "automatic",
+    "backgroundColor": "#ffffff"
+  }
+}

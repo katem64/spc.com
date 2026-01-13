@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Prayer Statistics - SPC Online</title>
+
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#667eea">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="manifest" href="../manifest.json">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/landing_img.png?v=2">
+  <link rel="apple-touch-icon" href="../assets/images/landing_img.png?v=2">
+
+  <!-- Bootstrap core CSS -->
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+
+  <!-- Custom styles -->
+  <link href="../css/clean-blog.min.css" rel="stylesheet">
+  <link href="../css/theme.css" rel="stylesheet">
+  <link href="../css/dark-mode.css" rel="stylesheet">
+  <link href="../css/modern-theme.css" rel="stylesheet">
+
+  <style>
+    .widget-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .widget-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .prayer-action-btn {
+      padding: 0.75rem 1.5rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .prayer-action-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    }
+  </style>
+
+  <script defer src="../js/navbar-loader.js"></script>
+</head>
+
+<body class="dashboard-container">
+
+  <!-- Navigation -->
+  <div id="navbar-container"></div>
+
+
+
+  <!-- Dashboard Header -->
+  <div class="dashboard-header">
+    <div class="container-modern text-center">
+      <h1>📊 Prayer Statistics</h1>
+      <p>Your spiritual journey at a glance</p>
+    </div>
+  </div>
+
+    <!-- PWA Controls -->
+  <div class="pwa-controls"></div>
+
+  <!-- Main Content -->
+  <div class="container-modern" style="padding: 2rem 1rem;">
+    
+    <!-- Summary Cards -->
+    <div class="widget-grid" id="summary-cards">
+      <!-- Populated by JavaScript -->
+    </div>
+
+    <!-- Week View -->
+    <div class="card" style="margin-bottom: 2rem; padding: 1.5rem;">
+      <h2 style="font-size: 1.25rem; margin-bottom: 1rem; color: var(--catholic-purple);">
+        <i class="fas fa-calendar-week"></i> This Week
+      </h2>
+      <div id="week-view"></div>
+    </div>
+
+    <!-- Month Calendar -->
+    <div class="card" style="margin-bottom: 2rem; padding: 1.5rem;">
+      <h2 style="font-size: 1.25rem; margin-bottom: 1rem; color: var(--catholic-purple);">
+        <i class="fas fa-calendar-alt"></i> This Month
+      </h2>
+      <div id="month-calendar"></div>
+    </div>
+
+    <!-- Most Prayed -->
+    <div class="card" style="margin-bottom: 2rem; padding: 1.5rem;">
+      <h2 style="font-size: 1.25rem; margin-bottom: 1rem; color: var(--catholic-purple);">
+        <i class="fas fa-heart"></i> Most Prayed
+      </h2>
+      <div id="most-prayed"></div>
+    </div>
+
+    <!-- Settings -->
+    <div class="card" style="margin-bottom: 2rem; padding: 1.5rem;">
+      <h2 style="font-size: 1.25rem; margin-bottom: 1rem; color: var(--catholic-purple);">
+        <i class="fas fa-cog"></i> Tracker Settings
+      </h2>
+      <div id="tracker-settings"></div>
+    </div>
+
+    <!-- Export Data -->
+    <div class="card" style="margin-bottom: 2rem; padding: 1.5rem; text-align: center;">
+      <h2 style="font-size: 1.25rem; margin-bottom: 1rem; color: var(--catholic-purple);">
+        <i class="fas fa-download"></i> Export Your Data
+      </h2>
+      <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+        Download your prayer history as a text file
+      </p>
+      <button id="export-btn" class="prayer-action-btn">
+        <i class="fas fa-file-download"></i> Export Prayer History
+      </button>
+      <button id="clear-btn" class="prayer-action-btn" style="background: #DC2626; margin-left: 0.5rem;">
+        <i class="fas fa-trash"></i> Clear All Data
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div id="footer-container"></div>
+
+  <!-- Scripts -->
+  <script src="../assets/vendor/jquery/jquery.min.js"></script>
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/clean-blog.min.js"></script>
+  
+  <!-- PWA Scripts -->
+  <script src="../js/app.js"></script>
+  <script src="../js/font-size.js"></script>
+  <script src="../js/bookmarks.js"></script>
+  <script src="../js/search.js"></script>
+  <script src="../js/prayer-tracker.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      
+      // Wait for all scripts to load
+      setTimeout(function() {
+        
+        if (!window.PrayerTracker) {
+          console.error('❌ PrayerTracker not loaded!');
+          document.getElementById('summary-cards').innerHTML = `
+            <div class="card" style="padding: 2rem; text-align: center;">
+              <p style="color: #DC2626; font-weight: 600;">⚠️ Prayer Tracker failed to load</p>
+              <p style="color: #666; font-size: 0.9rem; margin-top: 0.5rem;">Please refresh the page</p>
+            </div>
+          `;
+          return;
+        }
+
+        try {
+          // Load all data
+          const settings = PrayerTracker.loadSettings();
+          const history = PrayerTracker.loadHistory();
+          const streak = PrayerTracker.calculateStreak();
+          const totalDays = PrayerTracker.calculateTotalDays();
+          const weekPrayers = PrayerTracker.getWeekPrayers();
+          const monthStats = PrayerTracker.getMonthStats();
+          const sortedPrayers = Object.entries(history.prayers || {})
+            .sort((a, b) => b[1].count - a[1].count)
+            .slice(0, 5);
+
+
+
+          // Build summary cards
+          let cardsHTML = '';
+
+          if (settings.streaksEnabled) {
+            cardsHTML += `
+              <div class="card prayer-tracker-card">
+                <div class="tracker-icon">🔥</div>
+                <div class="tracker-number">${streak}</div>
+                <div class="tracker-label">Current Streak</div>
+                <div class="tracker-subtitle">${streak === 0 ? 'Start today!' : 'Consecutive days'}</div>
+              </div>
+            `;
+          }
+
+          cardsHTML += `
+            <div class="card prayer-tracker-card">
+              <div class="tracker-icon">📅</div>
+              <div class="tracker-number">${totalDays}</div>
+              <div class="tracker-label">Total Days</div>
+              <div class="tracker-subtitle">Lifetime prayer days</div>
+            </div>
+            <div class="card prayer-tracker-card">
+              <div class="tracker-icon">🙏</div>
+              <div class="tracker-number">${history.totalPrayers || 0}</div>
+              <div class="tracker-label">Total Prayers</div>
+              <div class="tracker-subtitle">All time</div>
+            </div>
+            <div class="card prayer-tracker-card">
+              <div class="tracker-icon">📊</div>
+              <div class="tracker-number">${monthStats.prayedDays}/${monthStats.totalDays}</div>
+              <div class="tracker-label">This Month</div>
+              <div class="tracker-subtitle">${new Date().toLocaleDateString('en-US', { month: 'long' })}</div>
+            </div>
+          `;
+
+          document.getElementById('summary-cards').innerHTML = cardsHTML;
+
+          // Week view
+          document.getElementById('week-view').innerHTML = `
+            <div style="display: flex; gap: 0.75rem; justify-content: flex-start; flex-wrap: wrap;">
+              ${weekPrayers.map(day => `
+                <div style="display: flex; flex-direction: column; align-items: center; min-width: 50px;">
+                  <div style="font-size: 0.8rem; color: var(--text-secondary); font-weight: ${day.isToday ? '700' : '400'}; color: ${day.isToday ? 'var(--primary)' : 'var(--text-secondary)'};">${day.day}</div>
+                  <div style="font-size: 1.5rem; margin-top: 0.25rem;">${day.prayed ? '✅' : '⭕'}</div>
+                </div>
+              `).join('')}
+            </div>
+          `;
+
+          // Month calendar
+          const today = new Date();
+          const year = today.getFullYear();
+          const month = today.getMonth();
+          const daysInMonth = new Date(year, month + 1, 0).getDate();
+          const dailyLog = history.dailyLog || {};
+          
+          let calendarHTML = '<div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.5rem; max-width: 400px;">';
+          
+          for (let day = 1; day <= daysInMonth; day++) {
+            const date = new Date(year, month, day);
+            const dateKey = date.toISOString().split('T')[0];
+            const prayed = dailyLog[dateKey] && dailyLog[dateKey].length > 0;
+            const isToday = day === today.getDate();
+            
+            calendarHTML += `
+              <div style="aspect-ratio: 1; display: flex; align-items: center; justify-content: center; border: 1px solid ${isToday ? 'var(--primary)' : '#E5E7EB'}; border-radius: 8px; background: ${prayed ? 'var(--light-bg)' : 'transparent'}; font-weight: ${isToday ? '700' : '400'}; color: ${isToday ? 'var(--primary)' : 'var(--text-primary)'};">
+                ${prayed ? '✅' : day}
+              </div>
+            `;
+          }
+          
+          calendarHTML += '</div>';
+          document.getElementById('month-calendar').innerHTML = calendarHTML;
+
+          // Most prayed
+          if (sortedPrayers.length > 0) {
+            document.getElementById('most-prayed').innerHTML = sortedPrayers.map(([name, data], index) => `
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; margin-bottom: 0.5rem; background: var(--bg-secondary); border-radius: 8px;">
+                <span><span style="font-weight: 700; color: var(--catholic-purple);">${index + 1}.</span> ${name}</span>
+                <span style="font-weight: 600; color: var(--primary);">${data.count}×</span>
+              </div>
+            `).join('');
+          } else {
+            document.getElementById('most-prayed').innerHTML = '<p style="color: var(--text-secondary); text-align: center;">No prayers recorded yet. Start praying!</p>';
+          }
+
+          // Settings
+          document.getElementById('tracker-settings').innerHTML = `
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+              <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+                <input type="checkbox" id="streaks-toggle" ${settings.streaksEnabled ? 'checked' : ''} style="width: 20px; height: 20px; cursor: pointer;">
+                <div>
+                  <div style="font-weight: 600;">Enable Prayer Streaks</div>
+                  <div style="font-size: 0.85rem; color: var(--text-secondary);">Track consecutive days of prayer</div>
+                </div>
+              </label>
+              <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+                <input type="checkbox" id="stats-toggle" ${settings.showStats ? 'checked' : ''} style="width: 20px; height: 20px; cursor: pointer;">
+                <div>
+                  <div style="font-weight: 600;">Show Statistics on Dashboard</div>
+                  <div style="font-size: 0.85rem; color: var(--text-secondary);">Display prayer stats on home page</div>
+                </div>
+              </label>
+              <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+                <input type="checkbox" id="recent-toggle" ${settings.showRecentPrayers ? 'checked' : ''} style="width: 20px; height: 20px; cursor: pointer;">
+                <div>
+                  <div style="font-weight: 600;">Show Recently Viewed Prayers</div>
+                  <div style="font-size: 0.85rem; color: var(--text-secondary);">Quick access to recent prayers</div>
+                </div>
+              </label>
+            </div>
+          `;
+
+          // Settings event listeners
+          document.getElementById('streaks-toggle').addEventListener('change', function() {
+            settings.streaksEnabled = this.checked;
+            PrayerTracker.saveSettings(settings);
+            location.reload();
+          });
+
+          document.getElementById('stats-toggle').addEventListener('change', function() {
+            settings.showStats = this.checked;
+            PrayerTracker.saveSettings(settings);
+          });
+
+          document.getElementById('recent-toggle').addEventListener('change', function() {
+            settings.showRecentPrayers = this.checked;
+            PrayerTracker.saveSettings(settings);
+          });
+
+          // Export button
+          document.getElementById('export-btn').addEventListener('click', function() {
+            const data = PrayerTracker.loadHistory();
+            const text = `SPC Online Prayer History
+Exported: ${new Date().toLocaleString()}
+
+SUMMARY:
+- Total Prayer Days: ${totalDays}
+- Total Prayers: ${data.totalPrayers || 0}
+- Current Streak: ${streak} days
+- First Prayer: ${data.firstPrayerDate || 'N/A'}
+
+MOST PRAYED:
+${sortedPrayers.map(([name, info], i) => `${i + 1}. ${name} (${info.count}×)`).join('\n')}
+
+DAILY LOG:
+${Object.entries(data.dailyLog || {}).sort((a, b) => b[0].localeCompare(a[0])).map(([date, prayers]) => `${date}: ${prayers.join(', ')}`).join('\n')}
+`;
+
+            const blob = new Blob([text], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `spc-prayer-history-${new Date().toISOString().split('T')[0]}.txt`;
+            a.click();
+            URL.revokeObjectURL(url);
+          });
+
+          // Clear button
+          document.getElementById('clear-btn').addEventListener('click', function() {
+            if (confirm('Are you sure you want to delete all prayer history? This cannot be undone.')) {
+              if (confirm('This will permanently delete all your prayer statistics. Continue?')) {
+                localStorage.removeItem('spc-prayer-history');
+                alert('All prayer history has been cleared.');
+                location.reload();
+              }
+            }
+          });
+
+        } catch (error) {
+          console.error('❌ Error loading statistics:', error);
+          console.error('Stack:', error.stack);
+          document.getElementById('summary-cards').innerHTML = `
+            <div class="card" style="padding: 2rem; text-align: center;">
+              <p style="color: #DC2626; font-weight: 600;">Error loading statistics</p>
+              <p style="color: #666; font-size: 0.9rem; margin-top: 0.5rem;">${error.message}</p>
+              <p style="color: #666; font-size: 0.85rem; margin-top: 0.5rem;">Press F12 and check console for details</p>
+            </div>
+          `;
+        }
+      }, 100);
+    });
+  </script>
+
+  <script src="../js/footer-loader.js"></script>
+  
+  <script src="../js/prayer-features.js"></script>
+</body>
+</html>
+
+

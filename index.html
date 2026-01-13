@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="SPC Online - Prayer Companion for Sisters of St. Paul of Chartres">
+  <meta name="theme-color" content="#667eea">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="SPC Online">
+  
+  <title>SPC Online - Sisters of St. Paul of Chartres</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/landing_img.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="./assets/images/landing_img.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/landing_img.png">
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="./manifest.json">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="./assets/vendor/fontawesome-free/css/all.min.css">
+  
+  <!-- Local Fonts -->
+  <link rel="stylesheet" href="./assets/fonts/local-fonts.css">
+  
+  <!-- Capacitor Enhancements -->
+  <link rel="stylesheet" href="./css/capacitor-enhancements.css">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+    
+    /* Main Landing Page Styles */
+    .landing-container {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      animation: gradientShift 15s ease infinite;
+    }
+    
+    /* Decorative background pattern */
+    .pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.1;
+      background-image: 
+        repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.1) 35px, rgba(255,255,255,.1) 70px);
+    }
+    
+    /* Landing image */
+    .illustration {
+      width: 100%;
+      max-width: 280px;
+      margin-bottom: 2rem;
+      animation: fadeInUp 1.2s ease-out;
+      position: relative;
+      z-index: 2;
+      padding: 0 1rem;
+    }
+    
+    .landing-image {
+      width: 100%;
+      height: auto;
+      border-radius: 50%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+      opacity: 0.92;
+      filter: blur(0.3px) brightness(0.95) saturate(0.9);
+      transition: all 0.4s ease;
+      border: 6px solid rgba(255,255,255,0.08);
+    }
+    
+    .landing-image:hover {
+      opacity: 0.98;
+      filter: blur(0px) brightness(1) saturate(1);
+      box-shadow: 0 10px 35px rgba(0,0,0,0.2);
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+    
+    .content {
+      text-align: center;
+      color: white;
+      z-index: 2;
+      animation: fadeInUp 1.4s ease-out;
+      padding: 0 2rem;
+    }
+    
+    h1 {
+      font-family: 'Lora', Georgia, 'Times New Roman', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      letter-spacing: -0.5px;
+    }
+    
+    .tagline {
+      font-size: 1.15rem;
+      margin-bottom: 3rem;
+      opacity: 0.95;
+      font-weight: 400;
+      line-height: 1.6;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    }
+    
+    .btn-enter {
+      background: white;
+      color: #764ba2;
+      padding: 1.2rem 3.5rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      animation: fadeInUp 1.6s ease-out, pulse 2s ease-in-out infinite;
+    }
+    
+    .btn-enter:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+    }
+    
+    .btn-enter:active {
+      transform: translateY(-1px) scale(1.03);
+    }
+    
+    @keyframes pulse {
+      0%, 100% {
+        box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      }
+      50% {
+        box-shadow: 0 10px 40px rgba(255,255,255,0.4);
+      }
+    }
+    
+    /* Progress dots */
+    .dots {
+      position: absolute;
+      bottom: 3rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.5rem;
+      animation: fadeInUp 1.8s ease-out;
+      z-index: 2;
+    }
+    
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      transition: all 0.3s ease;
+    }
+    
+    .dot.active {
+      background: white;
+      width: 30px;
+      border-radius: 5px;
+    }
+    
+    /* Floating particles */
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: rgba(255,255,255,0.6);
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .particle:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+    .particle:nth-child(2) { top: 60%; left: 15%; animation-delay: 1s; }
+    .particle:nth-child(3) { top: 40%; left: 85%; animation-delay: 2s; }
+    .particle:nth-child(4) { top: 80%; left: 75%; animation-delay: 1.5s; }
+    .particle:nth-child(5) { top: 15%; left: 90%; animation-delay: 0.5s; }
+    
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+      
+      .tagline {
+        font-size: 1rem;
+        margin-bottom: 2.5rem;
+      }
+      
+      .btn-enter {
+        padding: 1rem 2.5rem;
+        font-size: 1.1rem;
+      }
+      
+      .illustration {
+        max-width: 240px;
+        margin-bottom: 1.5rem;
+        padding: 0 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- ACCESS CODE SCREEN (shows first) -->
+  <div id="access-screen">
+    <div class="access-card">
+      <div class="access-card-logo">
+        <img src="./assets/images/landing_img.png" alt="SPC Logo">
+      </div>
+      <h2>Welcome Sisters</h2>
+      <p>Please enter your access code to continue</p>
+      <div class="access-input-group">
+        <input 
+          type="text" 
+          id="access-code-input" 
+          class="access-input" 
+          placeholder="Enter Code"
+          autocomplete="off"
+          autocapitalize="characters"
+        >
+      </div>
+      <button id="submit-code" class="access-btn ripple">Enter</button>
+      <p id="error-message" class="error-message"></p>
+    </div>
+  </div>
+  
+  <!-- MAIN APP CONTENT (shows after authentication) -->
+  <div id="main-app">
+    <div class="landing-container">
+      <div class="pattern"></div>
+      
+      <!-- Floating particles -->
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      
+      <!-- Landing Image -->
+      <div class="illustration">
+        <img src="./assets/images/landing_img.png" alt="Sisters of St. Paul of Chartres" class="landing-image">
+      </div>
+      
+      <!-- Content -->
+      <div class="content">
+        <h1>Pray with Us</h1>
+        <p class="tagline">Sometimes, all it takes is just one prayer to change everything.</p>
+        <a href="./landing.html" class="btn-enter ripple">Begin Prayer</a>
+      </div>
+      
+      <!-- Progress dots -->
+      <div class="dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Access Code Authentication -->
+  <script src="./js/access-code.js"></script>
+  
+  <!-- PWA Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then(registration => {
+            console.log('[PWA] Service Worker registered:', registration.scope);
+          })
+          .catch(error => {
+            console.log('[PWA] Service Worker registration failed:', error);
+          });
+      });
+    }
+  </script>
+</body>
+</html>
