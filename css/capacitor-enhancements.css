@@ -180,11 +180,6 @@
   }
 }
 
-/* Main app hidden by default */
-#main-app {
-  display: none;
-}
-
 #main-app.fade-in {
   animation: fadeIn 0.8s ease both;
 }
