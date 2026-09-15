@@ -1,6 +1,6 @@
 {
   "name": "SPC Prayer.Com",
-  "short_name": "SPrayCom",
+  "short_name": "SPray.Com",
   "description": "SPC Prayer.Com for the Sisters of St. Paul of Chartres - Philippine Province",
   "start_url": "./index.html",
   "scope": "./",
