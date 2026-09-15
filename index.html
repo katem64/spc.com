@@ -24,6 +24,7 @@
   
   <!-- Local Fonts -->
   <link rel="stylesheet" href="./assets/fonts/local-fonts.css">
+  <link rel="stylesheet" href="./css/capacitor-enhancements.css?v=5">
   
   <style>
     #main-app {
@@ -265,7 +266,22 @@
   </style>
 </head>
 <body>
-  
+  <!-- Private access gate. The code is validated client-side without being shown in the README. -->
+  <div id="access-screen">
+    <div class="access-card">
+      <div class="access-card-logo">
+        <img src="./assets/images/spccomlogo.png" alt="SPC Prayer.Com logo">
+      </div>
+      <h2>Welcome Sisters</h2>
+      <p>Please enter your access code to continue</p>
+      <div class="access-input-group">
+        <input id="access-code-input" class="access-input" type="password" placeholder="Enter Code" autocomplete="off">
+      </div>
+      <button id="submit-code" class="access-btn ripple" type="button">Enter</button>
+      <p id="error-message" class="error-message"></p>
+    </div>
+  </div>
+
   <!-- Public landing screen -->
   <div id="main-app">
     <div class="landing-container">
@@ -301,6 +317,8 @@
     </div>
   </div>
   
+  <script src="./js/access-code.js"></script>
+
   <!-- PWA Registration -->
   <script>
     if ('serviceWorker' in navigator) {
