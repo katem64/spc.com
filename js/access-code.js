@@ -6,7 +6,7 @@
   'use strict';
 
   const ACCESS_CODE_HASH = 'dabc57f3befdd27112534a6475adad0791c67ca8f52c4682b718d0bebbde0626';
-  const STORAGE_KEY = 'spc_authenticated';
+  const STORAGE_KEY = 'spc_authenticated_v2';
 
   async function hashCode(code) {
     const data = new TextEncoder().encode(code);
