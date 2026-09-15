@@ -1,8 +1,8 @@
 ﻿// Service Worker for SPC Prayer.Com - Capacitor Version
 // Provides complete offline functionality
 
-const CACHE_NAME = 'spc-capacitor-v60';
-const RUNTIME_CACHE = 'spc-runtime-v60';
+const CACHE_NAME = 'spc-capacitor-v61';
+const RUNTIME_CACHE = 'spc-runtime-v61';
 
 function getCacheKey(request) {
   const cacheUrl = new URL(request.url);
@@ -60,6 +60,22 @@ const PRECACHE_ASSETS = [
   './footer.html'
 ];
 
+async function cacheAsset(cache, asset) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 5000);
+
+  try {
+    const response = await fetch(asset, { signal: controller.signal });
+    if (response.ok) {
+      await cache.put(asset, response);
+    }
+  } catch (error) {
+    console.warn('[ServiceWorker] Skipping unavailable asset:', asset);
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
 // Install event - cache essential files
 self.addEventListener('install', (event) => {
   console.log('[ServiceWorker] Installing...');
@@ -67,7 +83,7 @@ self.addEventListener('install', (event) => {
     caches.open(CACHE_NAME)
       .then((cache) => {
         console.log('[ServiceWorker] Caching app shell');
-        return cache.addAll(PRECACHE_ASSETS);
+        return Promise.all(PRECACHE_ASSETS.map((asset) => cacheAsset(cache, asset)));
       })
       .then(() => {
         console.log('[ServiceWorker] Installed successfully');
