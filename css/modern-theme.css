@@ -1,21 +1,21 @@
-/* Minimalist Theme for SPC Online */
+﻿/* Minimalist Theme for SPC Prayer.Com */
 /* Clean, focused prayer experience */
 
 :root {
   /* Minimalist Color Palette */
-  --primary: #667eea;
-  --primary-dark: #5568d3;
-  --accent: #764ba2;
-  --light-bg: #f5f3ff;
+  --primary: #9a6c2f;
+  --primary-dark: #805226;
+  --accent: #6b421f;
+  --light-bg: #f7f1e5;
   
   /* Catholic Colors */
-  --catholic-purple: #6B46C1;
+  --catholic-purple: #6b421f;
   
   /* Neutral Palette */
-  --bg-primary: #FFFFFF;
-  --bg-secondary: #F9FAFB;
-  --text-primary: #1F2937;
-  --text-secondary: #6B7280;
+  --bg-primary: #fffaf0;
+  --bg-secondary: #f7f1e5;
+  --text-primary: #4a3320;
+  --text-secondary: #806544;
   
   /* Enhanced Shadow System */
   --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.06);
@@ -48,7 +48,7 @@
 }
 
 .dashboard-header {
-  background: linear-gradient(135deg, #667eea 0%, #5568d3 100%);
+  background: linear-gradient(135deg, #9a6c2f 0%, #805226 100%);
   color: white;
   padding: 1.25rem 0 1.5rem;
   margin-bottom: 1rem;
@@ -276,7 +276,7 @@
 .prayer-title {
   font-size: 1.5rem;
   font-weight: 600;
-  color: #667eea;
+  color: #9a6c2f;
   margin-bottom: 1.25rem;
   padding-bottom: 0.75rem;
   text-align: center;
@@ -529,3 +529,4 @@
 .mt-2 { margin-top: 1rem; }
 .mt-3 { margin-top: 1.5rem; }
 .mt-4 { margin-top: 2rem; }
+

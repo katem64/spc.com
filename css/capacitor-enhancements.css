@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Capacitor Enhancements & Pray As You Go Aesthetic
  * Enhanced visual design with smooth animations and modern UI
  */
@@ -13,33 +13,35 @@
   left: 0;
   width: 100%;
   height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  background: linear-gradient(135deg, #fffbea 0%, #f3e4b8 52%, #ead39a 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   z-index: 10000;
-  animation: gradientShift 15s ease infinite;
+  animation: gradientShift 18s ease-in-out infinite;
+  will-change: background;
 }
 
 @keyframes gradientShift {
   0%, 100% {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    background: linear-gradient(135deg, #fffbea 0%, #f3e4b8 52%, #ead39a 100%);
   }
   50% {
-    background: linear-gradient(135deg, #f093fb 0%, #667eea 50%, #764ba2 100%);
+    background: linear-gradient(135deg, #ead39a 0%, #f3e4b8 50%, #fffbea 100%);
   }
 }
 
 .access-card {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 253, 244, 0.96);
   backdrop-filter: blur(10px);
   border-radius: 20px;
   padding: 3rem 2.5rem;
   max-width: 400px;
   width: 90%;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  animation: slideUp 0.6s ease-out;
+  animation: slideUp 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transform-origin: center bottom;
 }
 
 @keyframes slideUp {
@@ -60,6 +62,12 @@
   border-radius: 50%;
   overflow: hidden;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  animation: logoFloat 5s ease-in-out 0.8s infinite;
+}
+
+@keyframes logoFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
 }
 
 .access-card-logo img {
@@ -70,21 +78,29 @@
 
 .access-card h2 {
   font-size: 1.8rem;
-  color: #2d3748;
+  color: #4a3320;
   margin-bottom: 0.5rem;
   text-align: center;
   font-weight: 700;
+  animation: contentReveal 0.55s ease-out 0.2s both;
 }
 
 .access-card p {
-  color: #718096;
+  color: #604b32;
   text-align: center;
   margin-bottom: 2rem;
   font-size: 0.95rem;
+  animation: contentReveal 0.55s ease-out 0.3s both;
+}
+
+@keyframes contentReveal {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .access-input-group {
   margin-bottom: 1.5rem;
+  animation: contentReveal 0.55s ease-out 0.4s both;
 }
 
 .access-input {
@@ -97,12 +113,13 @@
   letter-spacing: 2px;
   transition: all 0.3s ease;
   font-weight: 600;
-  background: #f7fafc;
+  background: #fffdf4;
+  color: #4a3320;
 }
 
 .access-input:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: #9a6c2f;
   background: white;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
@@ -110,20 +127,22 @@
 .access-btn {
   width: 100%;
   padding: 1rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #9a6c2f 0%, #6b421f 100%);
   color: white;
   border: none;
   border-radius: 12px;
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
   box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  animation: contentReveal 0.55s ease-out 0.5s both;
 }
 
 .access-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+  filter: brightness(1.08);
 }
 
 .access-btn:active {
@@ -167,7 +186,37 @@
 }
 
 #main-app.fade-in {
-  animation: fadeIn 0.6s ease;
+  animation: fadeIn 0.8s ease both;
+}
+
+/* Light landing mode text contrast. */
+.landing-container .content {
+  color: #4a3320;
+}
+
+.landing-container .content h1,
+.landing-container .content .brand-kicker,
+.landing-container .content .brand-description,
+.landing-container .content .tagline {
+  color: #4a3320;
+  text-shadow: 0 2px 8px rgba(255, 253, 244, 0.7);
+}
+
+.landing-container .content .brand-kicker {
+  color: #704a22;
+}
+
+.landing-container .content .brand-description,
+.landing-container .content .tagline {
+  color: #604b32;
+}
+
+.landing-container .dot {
+  background: rgba(112, 74, 34, 0.38);
+}
+
+.landing-container .dot.active {
+  background: #704a22;
 }
 
 @keyframes fadeIn {
@@ -176,6 +225,20 @@
   }
   to {
     opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #access-screen,
+  .access-card,
+  .access-card-logo,
+  .access-card h2,
+  .access-card p,
+  .access-input-group,
+  .access-btn,
+  #main-app.fade-in {
+    animation: none !important;
+    transition: none !important;
   }
 }
 
@@ -208,7 +271,7 @@ html {
 
 /* Improved gradient text */
 .gradient-text {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #9a6c2f 0%, #6b421f 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -225,7 +288,7 @@ html {
 button:focus,
 input:focus,
 a:focus {
-  outline: 2px solid #667eea;
+  outline: 2px solid #9a6c2f;
   outline-offset: 2px;
 }
 
@@ -251,7 +314,7 @@ a:focus {
   
   .access-input:focus {
     background: #1a202c;
-    border-color: #667eea;
+    border-color: #9a6c2f;
   }
 }
 
@@ -270,7 +333,7 @@ a:focus {
   width: 20px;
   height: 20px;
   margin: -10px 0 0 -10px;
-  border: 2px solid #667eea;
+  border: 2px solid #9a6c2f;
   border-radius: 50%;
   border-top-color: transparent;
   animation: spinner 0.6s linear infinite;
@@ -286,6 +349,16 @@ body {
   padding-bottom: env(safe-area-inset-bottom);
   padding-left: env(safe-area-inset-left);
   padding-right: env(safe-area-inset-right);
+}
+
+html {
+  background: var(--color-bg, #faf9f6);
+}
+
+.pwa-controls,
+.universal-footer {
+  padding-left: max(1rem, env(safe-area-inset-left));
+  padding-right: max(1rem, env(safe-area-inset-right));
 }
 
 /* iOS notch support */
@@ -341,10 +414,10 @@ body {
 
 /* Enhanced color scheme */
 :root {
-  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --primary-color: #667eea;
-  --secondary-color: #764ba2;
-  --accent-color: #f093fb;
+  --primary-gradient: linear-gradient(135deg, #9a6c2f 0%, #6b421f 100%);
+  --primary-color: #9a6c2f;
+  --secondary-color: #6b421f;
+  --accent-color: #d8b36a;
   --text-primary: #2d3748;
   --text-secondary: #718096;
   --bg-light: #f7fafc;
@@ -376,3 +449,4 @@ body {
 .no-transition * {
   transition: none !important;
 }
+

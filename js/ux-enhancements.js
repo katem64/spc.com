@@ -1,4 +1,4 @@
-// UX Enhancements: Offline Indicator, Keyboard Navigation
+﻿// UX Enhancements: Offline Indicator, Keyboard Navigation
 // Improves user experience and accessibility for native apps and PWA
 
 (function() {
@@ -124,7 +124,7 @@
         position: fixed;
         top: 70px;
         right: 1rem;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #9a6c2f 0%, #6b421f 100%);
         color: white;
         padding: 0.5rem 1rem;
         border-radius: 20px;
@@ -161,20 +161,20 @@
 
       /* Keyboard Focus Styles */
       *:focus-visible {
-        outline: 2px solid #667eea;
+        outline: 2px solid #9a6c2f;
         outline-offset: 2px;
         border-radius: 4px;
       }
 
       .prayer-card:focus-visible {
-        outline: 3px solid #667eea;
+        outline: 3px solid #9a6c2f;
         outline-offset: 3px;
         transform: translateY(-2px);
       }
 
       button:focus-visible,
       a:focus-visible {
-        outline: 2px solid #667eea;
+        outline: 2px solid #9a6c2f;
         outline-offset: 2px;
       }
 
@@ -189,7 +189,7 @@
         position: fixed;
         top: -100px;
         left: 1rem;
-        background: #667eea;
+        background: #9a6c2f;
         color: white;
         padding: 0.75rem 1.5rem;
         border-radius: 8px;
@@ -252,3 +252,4 @@
   }
 
 })();
+

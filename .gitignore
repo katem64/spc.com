@@ -1,0 +1,15 @@
+node_modules/
+www/
+
+# Capacitor and Android generated output
+android/.gradle/
+android/build/
+android/app/build/
+android/.idea/
+
+# Local IDE and OS files
+.idea/
+.vscode/
+*.swp
+Thumbs.db
+.DS_Store

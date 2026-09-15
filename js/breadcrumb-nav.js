@@ -22,8 +22,8 @@
     'The Rosary': [
       'joy', 'light', 'sorrow', 'glorious'
     ],
-    'Book of Life': [
-      'BLwhoarewe', 'BLnatureandmission', 'BLlifeofconsecration'
+    'M.A.R.K.S. Examen': [
+      'marks-examen'
     ]
   };
 
@@ -56,7 +56,6 @@
   function formatPrayerName(fileName) {
     return fileName
       .replace(/([A-Z])/g, ' $1')
-      .replace(/^BL/, 'Book of Life: ')
       .trim();
   }
 
@@ -111,7 +110,7 @@
     const anchorMap = {
       'Formulary Prayers': 'formulary',
       'The Rosary': 'rosary',
-      'Book of Life': 'bookoflife'
+      'M.A.R.K.S. Examen': 'marks-examen'
     };
     return anchorMap[category] || '';
   }

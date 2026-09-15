@@ -14,16 +14,7 @@
     const isInPagesFolder = currentPath.includes('/pages/');
     const navbarFile = isInPagesFolder ? '../navbar-for-pages.html' : './navbar.html';
 
-    // Fetch and insert navbar (with aggressive cache-busting)
-    const timestamp = new Date().getTime();
-    fetch(navbarFile + '?v=' + timestamp, {
-      cache: 'no-store',
-      headers: {
-        'Cache-Control': 'no-cache, no-store, must-revalidate',
-        'Pragma': 'no-cache',
-        'Expires': '0'
-      }
-    })
+    fetch(navbarFile)
       .then(response => response.text())
       .then(html => {
         // Remove any old navbar if exists
@@ -40,6 +31,9 @@
         if (navbar) {
           // Insert right after body opening tag
           document.body.insertBefore(navbar, document.body.firstChild);
+          const languageScript = document.createElement('script');
+          languageScript.src = isInPagesFolder ? '../js/global-language.js?v=4' : './js/global-language.js?v=4';
+          document.body.appendChild(languageScript);
         } else {
           console.error('Could not find nav element in navbar.html');
         }

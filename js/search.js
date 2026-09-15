@@ -1,4 +1,4 @@
-// Search System for SPC Online
+﻿// Search System for SPC Prayer.Com
 // Client-side search across all prayers
 
 (function() {
@@ -21,9 +21,6 @@
     { url: 'beforeconfession.html', title: 'Before Confession', category: 'Sacraments' },
     { url: 'beforeholycommunion.html', title: 'Before Holy Communion', category: 'Sacraments' },
     { url: 'beforemeal.html', title: 'Before Meal', category: 'Daily' },
-    { url: 'BLlifeofconsecration.html', title: 'Life of Consecration', category: 'Book of Life' },
-    { url: 'BLnatureandmission.html', title: 'Nature and Mission', category: 'Book of Life' },
-    { url: 'BLwhoarewe.html', title: 'Who Are We', category: 'Book of Life' },
     { url: 'ConsecrationtotheSacredHeartofJesus.html', title: 'Consecration to the Sacred Heart of Jesus', category: 'Formulary' },
     { url: 'contrition.html', title: 'Act of Contrition', category: 'Formulary' },
     { url: 'DeProfundis.html', title: 'De Profundis', category: 'Latin' },
@@ -79,6 +76,36 @@
 
   const STORAGE_KEY = 'spc-search-history';
   const MAX_HISTORY = 10;
+  let examenSearchRecords = [];
+  let examenSearchPromise = null;
+
+  function loadExamenSearchIndex() {
+    if (examenSearchPromise) return examenSearchPromise;
+    const inPages = window.location.pathname.includes('/pages/');
+    const dataPath = inPages ? '../data/marks-examen-index.json?v=search1' : './data/marks-examen-index.json?v=search1';
+    examenSearchPromise = fetch(dataPath)
+      .then((response) => response.ok ? response.json() : null)
+      .then((data) => {
+        if (!data) return;
+        const records = [];
+        (data.marks || []).forEach((mark) => {
+          (mark.weeks || []).forEach((week) => {
+            (week.days || []).forEach((day) => {
+              records.push({
+                url: inPages ? `marks-examen.html#mark=${mark.markNumber}&week=${week.weekNumber}&day=${encodeURIComponent(day.day)}` : `./pages/marks-examen.html#mark=${mark.markNumber}&week=${week.weekNumber}&day=${encodeURIComponent(day.day)}`,
+                title: `${mark.title} / Week ${week.weekNumber} / ${day.day}`,
+                category: `M.A.R.K.S. Examen: ${week.theme}`,
+                content: `M.A.R.K.S. Examen ${mark.title} ${week.theme} ${week.scripture || ''} ${day.day} ${day.prompt || ''}`,
+                isExamen: true
+              });
+            });
+          });
+        });
+        examenSearchRecords = records;
+      })
+      .catch(() => {});
+    return examenSearchPromise;
+  }
 
   // Fuzzy search function
   function fuzzyMatch(text, query) {
@@ -127,7 +154,12 @@
     .sort((a, b) => b.score - a.score)
     .slice(0, 15);
 
-    return results;
+    const examenResults = examenSearchRecords.map((record) => ({
+      ...record,
+      score: fuzzyMatch(record.content, query)
+    })).filter((record) => record.score > 0).sort((a, b) => b.score - a.score).slice(0, 15);
+
+    return results.concat(examenResults).sort((a, b) => b.score - a.score).slice(0, 20);
   }
 
   // Get search history
@@ -261,7 +293,8 @@
   }
 
   // Perform search and display results
-  function performSearch(query, container) {
+  async function performSearch(query, container) {
+    await loadExamenSearchIndex();
     const results = searchPrayers(query);
     
     if (results.length === 0) {
@@ -446,7 +479,7 @@
       .search-icon {
         position: absolute;
         left: 1rem;
-        color: #667eea;
+        color: #9a6c2f;
         font-size: 1.2rem;
       }
 
@@ -465,7 +498,7 @@
 
       .search-input:focus {
         outline: none;
-        border-color: #667eea;
+        border-color: #9a6c2f;
       }
 
       .dark-mode .search-input {
@@ -490,7 +523,7 @@
       }
 
       .clear-search:hover {
-        color: #667eea;
+        color: #9a6c2f;
       }
 
       .dark-mode .clear-search:hover {
@@ -508,7 +541,7 @@
       }
 
       .close-search:hover {
-        color: #667eea;
+        color: #9a6c2f;
         transform: rotate(90deg);
       }
 
@@ -533,7 +566,7 @@
         align-items: center;
         padding: 0.5rem 1rem;
         font-weight: 600;
-        color: #667eea;
+        color: #9a6c2f;
         font-size: 0.9rem;
         text-transform: uppercase;
       }
@@ -553,7 +586,7 @@
       }
 
       .clear-history:hover {
-        color: #667eea;
+        color: #9a6c2f;
         text-decoration: underline;
       }
 
@@ -605,7 +638,7 @@
         justify-content: center;
         background: white;
         border-radius: 8px;
-        color: #667eea;
+        color: #9a6c2f;
         font-size: 1.2rem;
       }
 
@@ -659,7 +692,7 @@
       .no-results i,
       .search-empty i {
         font-size: 3rem;
-        color: #667eea;
+        color: #9a6c2f;
         opacity: 0.3;
         margin-bottom: 1rem;
       }
@@ -728,6 +761,7 @@
 
   // Initialize
   function init() {
+    loadExamenSearchIndex();
     const controlContainer = document.querySelector('.pwa-controls');
     if (controlContainer) {
       const searchBtn = createSearchButton();
@@ -769,8 +803,8 @@
 
       .dark-mode .search-btn:hover {
         background: #333;
-        border-color: #3498DB;
-        color: #3498DB;
+        border-color: #9a6c2f;
+        color: #9a6c2f;
       }
     `;
     document.head.appendChild(style);
@@ -797,3 +831,4 @@
   }
 
 })();
+

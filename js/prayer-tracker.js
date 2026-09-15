@@ -1,4 +1,4 @@
-// Prayer Tracker - Phase 1
+﻿// Prayer Tracker - Phase 1
 // Tracks prayer history, streaks, and statistics using localStorage
 
 (function() {
@@ -12,7 +12,7 @@
     streaksEnabled: true,
     showStats: true,
     showRecentPrayers: true,
-    showStatsLink: true
+    showStatsLink: false
   };
 
   // Initialize tracker
@@ -285,7 +285,7 @@
       const streak = calculateStreak();
       html += `
         <div class="card prayer-tracker-card fade-in-up">
-          <div class="tracker-icon">🔥</div>
+          <div class="tracker-icon">ðŸ”¥</div>
           <div class="tracker-number">${streak}</div>
           <div class="tracker-label">Day Streak</div>
           <div class="tracker-subtitle">${streak === 0 ? 'Start praying today!' : 'Keep it going!'}</div>
@@ -297,7 +297,7 @@
     const totalDays = calculateTotalDays();
     html += `
       <div class="card prayer-tracker-card fade-in-up">
-        <div class="tracker-icon">📅</div>
+        <div class="tracker-icon">ðŸ“…</div>
         <div class="tracker-number">${totalDays}</div>
         <div class="tracker-label">Days of Prayer</div>
         <div class="tracker-subtitle">Total days prayed</div>
@@ -308,7 +308,7 @@
     const monthStats = getMonthStats();
     html += `
       <div class="card prayer-tracker-card fade-in-up">
-        <div class="tracker-icon">📊</div>
+        <div class="tracker-icon">ðŸ“Š</div>
         <div class="tracker-number">${monthStats.prayedDays}/${monthStats.totalDays}</div>
         <div class="tracker-label">This Month</div>
         <div class="tracker-subtitle">Days prayed in ${new Date().toLocaleDateString('en-US', { month: 'long' })}</div>
@@ -327,7 +327,7 @@
             ${week.map(day => `
               <div class="week-day ${day.prayed ? 'prayed' : ''} ${day.isToday ? 'today' : ''}">
                 <div class="day-name">${day.day}</div>
-                <div class="day-indicator">${day.prayed ? '✅' : '⭕'}</div>
+                <div class="day-indicator">${day.prayed ? 'âœ…' : 'â­•'}</div>
               </div>
             `).join('')}
           </div>
@@ -345,7 +345,7 @@
             <div class="recent-list">
               ${history.lastVisited.slice(0, 5).map(prayer => `
                 <a href="${prayer.replace(/\s+/g, '')}.html" class="recent-item">
-                  <span>📖</span>
+                  <span>ðŸ“–</span>
                   <span>${prayer}</span>
                 </a>
               `).join('')}
@@ -369,16 +369,10 @@
 
   // Add stats link to navbar
   function addStatsLinkToNavbar() {
-    // Check settings first
-    const settings = loadSettings();
-    if (!settings.showStatsLink) {
-      // Remove stats link if it exists
-      const existingLink = document.querySelector('.stats-link');
-      if (existingLink) {
-        existingLink.remove();
-      }
-      return;
-    }
+    // Keep statistics available by direct URL, but hide the navigation entry.
+    const existingLink = document.querySelector('.stats-link');
+    if (existingLink) existingLink.remove();
+    return;
 
     // Wait for navbar to load
     setTimeout(() => {
@@ -535,7 +529,7 @@
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background: linear-gradient(135deg, #667eea, #764ba2);
+      background: linear-gradient(135deg, #9a6c2f, #6b421f);
       color: white;
       padding: 12px 20px;
       border-radius: 8px;
@@ -547,7 +541,7 @@
       transform: translateY(20px);
       transition: all 0.3s ease;
     `;
-    notification.innerHTML = `✅ Prayer tracked: ${prayerName}`;
+    notification.innerHTML = `âœ… Prayer tracked: ${prayerName}`;
     
     document.body.appendChild(notification);
     
@@ -584,3 +578,4 @@
     initTracker();
   }
 })();
+

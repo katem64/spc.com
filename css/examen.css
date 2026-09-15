@@ -1,0 +1,144 @@
+.examen-page {
+  background: #f7f1e5;
+  color: #3f352b;
+  padding-top: 147px;
+}
+
+.examen-page > .pwa-controls {
+  position: fixed !important;
+  top: 67px !important;
+  left: 0;
+  width: 100%;
+  z-index: 1029;
+}
+
+.examen-shell {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 7rem 1.25rem 4rem;
+}
+
+.foundations-page {
+  padding-top: 80px;
+}
+
+.foundations-shell {
+  padding-top: 1.5rem;
+}
+
+.examen-hero {
+  display: grid;
+  grid-template-columns: minmax(180px, 270px) 1fr;
+  gap: 3rem;
+  align-items: center;
+  padding: 2rem;
+  background: #fffaf0;
+  border: 1px solid #dfcda9;
+  box-shadow: 0 14px 35px rgba(92, 70, 40, .12);
+}
+
+.examen-cover {
+  width: 100%;
+  aspect-ratio: 1 / 1.414;
+  object-fit: cover;
+  border: 8px solid #fff;
+  box-shadow: 0 12px 24px rgba(69, 48, 23, .2);
+}
+
+.examen-eyebrow {
+  color: #9a6c2f;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.examen-hero h1 {
+  color: #5d4328;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(2.2rem, 5vw, 4.2rem);
+  letter-spacing: 0;
+  text-shadow: none;
+}
+
+.examen-lead { max-width: 34rem; font-size: 1.1rem; line-height: 1.75; }
+.start-examen-button { display: inline-block; margin-top: 1rem; padding: .8rem 1.1rem; background: #704a22; color: #fff; border-radius: 3px; text-decoration: none; }
+.start-examen-button:hover { color: #fff; background: #523519; }
+.examen-howto { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.25rem; padding: 1rem; background: #efe2c7; }
+.examen-howto > div { display: grid; grid-template-columns: 2.2rem 1fr; column-gap: .65rem; align-items: center; }
+.howto-number, .choice-number { display: inline-grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; background: #a87836; color: #fff; font-weight: 700; }
+.examen-howto strong, .examen-howto small { grid-column: 2; }
+.examen-howto small { color: #806544; }
+body.dark-mode .examen-howto { background: #efe2c7; color: #4b3927; }
+body.dark-mode .examen-howto strong { color: #4b3927 !important; }
+body.dark-mode .examen-howto small { color: #6c4b29 !important; }
+
+.examen-language { display: flex; gap: .5rem; margin-top: 1.5rem; }
+.language-button { border: 1px solid #b99a67; background: transparent; color: #6c4b29; padding: .45rem .8rem; border-radius: 3px; }
+.language-button.active, .language-button:hover { background: #6c4b29; color: #fff; }
+
+.examen-intro, .examen-search, .examen-content { margin-top: 2rem; padding: 2rem; background: rgba(255, 250, 240, .86); border-top: 4px solid #c39b55; }
+.examen-preliminaries { margin-top: 2rem; padding: 2rem; background: rgba(255, 250, 240, .86); border-top: 4px solid #c39b55; }
+.examen-preliminaries h2 { color: #62472b; font-family: Georgia, 'Times New Roman', serif; }
+.preliminary-source { white-space: pre-line; line-height: 1.8; color: #4b3927; }
+.examen-intro h2, .examen-search h2 { color: #62472b; font-family: Georgia, 'Times New Roman', serif; }
+.examen-intro p { line-height: 1.8; max-width: 58rem; }
+.marks-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: .75rem; margin-top: 1.5rem; }
+.mark-step { padding: 1rem; background: #efe2c7; border-left: 3px solid #a87836; }
+.mark-step strong { display: block; color: #704a22; font-size: 1.3rem; }
+.mark-step span { font-size: .9rem; line-height: 1.4; }
+
+.section-heading-row { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+.record-count { color: #876a49; font-size: .85rem; }
+.examen-search input { border-color: #cdb78d; background: #fffdf8; padding: .8rem 1rem; }
+.examen-search-results { display: grid; gap: .75rem; margin-top: 1rem; }
+.search-result { padding: 1rem; border: 1px solid #dfcda9; background: #fffdf8; cursor: pointer; }
+.search-result:hover { border-color: #9a6c2f; }
+.search-result small { color: #806544; }
+.search-result p { margin: .35rem 0 0; }
+
+.examen-breadcrumb { color: #806544; font-size: .9rem; margin-bottom: .75rem; }
+.examen-content h2 { color: #62472b; font-family: Georgia, 'Times New Roman', serif; }
+.mark-source-content { margin: 1.25rem 0 1.5rem; padding: 1.25rem; background: #f4ead5; border-left: 4px solid #a87836; color: #4b3927; line-height: 1.75; }
+.mark-source-content h3 { margin: 0.9rem 0 0.35rem; color: #704a22; font-family: Georgia, 'Times New Roman', serif; font-size: 1.1rem; }
+.mark-source-content h3:first-child { margin-top: 0; }
+.mark-source-content p { margin: 0; white-space: pre-line; }
+.section-instruction { color: #806544; line-height: 1.6; }
+.back-button { border: 0; background: transparent; color: #704a22; padding: 0; margin-bottom: 1rem; }
+.mark-grid, .week-grid, .day-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1rem; margin-top: 1.25rem; }
+.examen-choice { display: block; width: 100%; text-align: left; border: 1px solid #d8c19a; background: #fffdf8; color: #4b3927; padding: 1.1rem; border-radius: 3px; transition: transform .2s ease, border-color .2s ease; }
+.examen-choice:hover { border-color: #9a6c2f; transform: translateY(-2px); }
+.examen-choice strong { display: block; color: #704a22; }
+.examen-choice .choice-number { margin-bottom: .7rem; }
+.reflection-instruction { color: #806544; font-style: italic; }
+.daily-view { max-width: 760px; margin: 0 auto; text-align: center; }
+.daily-view .day-label { color: #9a6c2f; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+.daily-view blockquote { margin: 2rem 0; padding: 1.5rem; background: #efe2c7; border-left: 4px solid #a87836; font-family: Georgia, 'Times New Roman', serif; font-size: 1.35rem; line-height: 1.75; text-align: left; }
+.daily-meta { color: #806544; font-size: .95rem; }
+.examen-nav { display: flex; justify-content: space-between; gap: 1rem; margin-top: 1.5rem; }
+.examen-nav button { border: 1px solid #a87836; background: transparent; color: #704a22; padding: .65rem 1rem; border-radius: 3px; }
+
+@media (max-width: 700px) {
+  .examen-page { padding-top: 147px; }
+  .examen-shell { padding-top: 2rem; }
+  .examen-hero { grid-template-columns: 1fr; gap: 1.5rem; padding: 1.25rem; }
+  .examen-howto { grid-template-columns: 1fr; }
+  .examen-cover { max-width: 230px; margin: 0 auto; }
+  .examen-intro, .examen-search, .examen-content { padding: 1.25rem; }
+  .marks-steps { grid-template-columns: 1fr; }
+  .daily-view blockquote { font-size: 1.15rem; }
+}
+
+.dark-mode .examen-page { background: #2b261f; color: #eee4d2; }
+.dark-mode .examen-hero, .dark-mode .examen-intro, .dark-mode .examen-search, .dark-mode .examen-content, .dark-mode .search-result, .dark-mode .examen-choice { background: #383026; color: #eee4d2; }
+.dark-mode .examen-preliminaries { background: #383026; color: #eee4d2; }
+.dark-mode .examen-preliminaries h2 { color: #e5c78d; }
+.dark-mode .preliminary-source { color: #eee4d2; }
+.preliminary-source { white-space: normal; }
+.preliminary-source p { margin: 0 0 1rem; line-height: 1.8; }
+.preliminary-source p:last-child { margin-bottom: 0; }
+.dark-mode .mark-source-content { background: #efe2c7; color: #4b3927; }
+.dark-mode .mark-source-content h3 { color: #704a22; }
+body.dark-mode .mark-source-content p { color: #4b3927 !important; }
+.dark-mode .examen-hero h1, .dark-mode .examen-intro h2, .dark-mode .examen-search h2, .dark-mode .examen-content h2 { color: #e5c78d; }
+.dark-mode .mark-step, .dark-mode .daily-view blockquote { background: #4a3d2b; }

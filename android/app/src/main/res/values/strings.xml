@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">SPC Prayer.Com</string>
+    <string name="title_activity_main">SPC Prayer.Com</string>
+    <string name="package_name">com.spc.companion</string>
+    <string name="custom_url_scheme">com.spc.companion</string>
+</resources>

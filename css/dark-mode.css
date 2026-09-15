@@ -1,20 +1,20 @@
-/* ================================================
-   SPC Online - Night Mode CSS (Deep Purple Theme)
+﻿/* ================================================
+  SPC Prayer.Com - Night Mode CSS (Warm Espresso Theme)
    For Night Prayers and Evening Devotions
    ================================================ */
 
 /* ===== NIGHT MODE ROOT VARIABLES ===== */
 body.dark-mode {
   --color-primary: #E6B566;
-  --color-secondary: #A8B5E0;
+  --color-secondary: #e5c78d;
   --color-accent: #F5C968;
-  --color-bg: #1a1525;
-  --color-bg-alt: #252035;
+  --color-bg: #241b14;
+  --color-bg-alt: #382a1d;
   --color-text: #F5F3F0;
   --color-text-light: #C5C3C0;
-  --color-border: #3d3550;
-  --color-shadow: rgba(26, 21, 37, 0.3);
-  --color-purple-glow: rgba(102, 126, 234, 0.15);
+  --color-border: #604a32;
+  --color-shadow: rgba(20, 12, 6, 0.42);
+  --color-warm-glow: rgba(216, 179, 106, 0.12);
 }
 
 /* ===== NIGHT MODE BODY ===== */
@@ -31,19 +31,19 @@ body.dark-mode .card-body {
   border-color: var(--color-border) !important;
   color: var(--color-text) !important;
   box-shadow: 0 2px 12px var(--color-shadow), 
-              0 0 20px var(--color-purple-glow) !important;
+              0 0 20px var(--color-warm-glow) !important;
 }
 
 body.dark-mode .col-md-8[style*="background-color"]:hover {
   box-shadow: 0 4px 16px var(--color-shadow), 
-              0 0 30px var(--color-purple-glow) !important;
+              0 0 30px var(--color-warm-glow) !important;
 }
 
 body.dark-mode .prayer-content-card {
   background-color: var(--color-bg-alt) !important;
   border: 1px solid var(--color-border) !important;
   box-shadow: 0 2px 12px var(--color-shadow), 
-              0 0 20px var(--color-purple-glow) !important;
+              0 0 20px var(--color-warm-glow) !important;
 }
 
 body.dark-mode .card {
@@ -54,17 +54,21 @@ body.dark-mode .card {
 
 /* ===== NIGHT MODE NAVIGATION ===== */
 body.dark-mode #mainNav {
-  background-color: #2d2640 !important;
+  background-color: #4a3524 !important;
   box-shadow: 0 2px 8px var(--color-shadow);
   border-bottom: 1px solid var(--color-border);
 }
 
 body.dark-mode #mainNav.navbar-scrolled {
-  background-color: rgba(45, 38, 64, 0.98) !important;
+  background-color: rgba(74, 53, 36, 0.98) !important;
 }
 
 body.dark-mode .navbar-brand {
   color: var(--color-primary) !important;
+}
+
+body.dark-mode #mainNav.modern .navbar-brand {
+  color: #fff4df !important;
 }
 
 body.dark-mode .navbar-brand:hover {
@@ -83,10 +87,10 @@ body.dark-mode .nav-link:focus {
 
 /* ===== NIGHT MODE DROPDOWNS ===== */
 body.dark-mode .dropdown-menu {
-  background-color: #2d2640;
+  background-color: #4a3524;
   border-color: var(--color-border);
   box-shadow: 0 4px 16px var(--color-shadow), 
-              0 0 20px var(--color-purple-glow);
+              0 0 20px var(--color-warm-glow);
   scrollbar-color: var(--color-primary) var(--color-bg-alt);
 }
 
@@ -110,17 +114,17 @@ body.dark-mode .dropdown-item:focus {
 
 /* ===== NIGHT MODE MASTHEAD/HEADER ===== */
 body.dark-mode .masthead .overlay {
-  background-color: rgba(26, 21, 37, 0.6);
+  background-color: rgba(36, 27, 20, 0.68);
 }
 
 body.dark-mode .masthead .site-heading h2,
 body.dark-mode .masthead .site-heading h4 {
-  text-shadow: 2px 2px 10px rgba(26, 21, 37, 0.9);
+  text-shadow: 2px 2px 10px rgba(36, 27, 20, 0.9);
 }
 
 /* ===== NIGHT MODE PAGE BACKGROUNDS ===== */
 body.dark-mode.prayer-page-container {
-  background: linear-gradient(135deg, #1a1525 0%, #252035 100%) !important;
+  background: linear-gradient(135deg, #241b14 0%, #382a1d 100%) !important;
 }
 
 body.dark-mode.dashboard-container {
@@ -179,7 +183,7 @@ body.dark-mode [style*="color: #"] {
 /* ===== NIGHT MODE FOOTER ===== */
 body.dark-mode footer,
 body.dark-mode .universal-footer {
-  background-color: #2d2640 !important;
+  background-color: #4a3524 !important;
   border-top: 1px solid var(--color-border);
 }
 
@@ -305,7 +309,7 @@ body.dark-mode {
 
 /* ===== DARK MODE HAMBURGER MENU ===== */
 body.dark-mode .navbar-toggler {
-  background-color: #2d2640 !important;
+  background-color: #4a3524 !important;
   border-color: #f5c968 !important;
   padding: 0.5rem 0.75rem;
 }
@@ -320,16 +324,16 @@ body.dark-mode .navbar-toggler:focus {
 }
 
 body.dark-mode .navbar-collapse {
-  background-color: #2d2640 !important;
+  background-color: #4a3524 !important;
 }
 
 body.dark-mode .navbar-nav {
-  background-color: #2d2640 !important;
+  background-color: #4a3524 !important;
 }
 
 @media (max-width: 991px) {
   body.dark-mode .navbar-collapse {
-    background-color: #2d2640 !important;
+    background-color: #4a3524 !important;
     border-top: 1px solid var(--color-border);
     margin-top: 1rem;
     padding: 1rem 0;
@@ -429,12 +433,12 @@ body.dark-mode .shadow-sm {
 
 body.dark-mode .shadow-lg {
   box-shadow: 0 1rem 3rem var(--color-shadow), 
-              0 0 30px var(--color-purple-glow) !important;
+              0 0 30px var(--color-warm-glow) !important;
 }
 
 /* ===== NIGHT MODE DASHBOARD HEADER ===== */
 body.dark-mode .dashboard-header {
-  background: linear-gradient(135deg, #5568d3 0%, #6B46C1 100%) !important;
+  background: linear-gradient(135deg, #805226 0%, #9a6c2f 100%) !important;
 }
 
 /* ===== DARK MODE QUICK ACTION BUTTONS ===== */
@@ -464,7 +468,7 @@ body.dark-mode .settings-card {
 }
 
 body.dark-mode .setting-item {
-  background: #2d2640 !important;
+  background: #4a3524 !important;
   border: 1px solid var(--color-border) !important;
 }
 
@@ -530,7 +534,7 @@ body.dark-mode .bookmarks-panel {
 }
 
 body.dark-mode .bookmarks-header {
-  background: #2d2640 !important;
+  background: #4a3524 !important;
   border-bottom: 1px solid var(--color-border) !important;
 }
 
@@ -552,7 +556,7 @@ body.dark-mode .bookmark-item {
 }
 
 body.dark-mode .bookmark-item:hover {
-  background: #2d2640 !important;
+  background: #4a3524 !important;
 }
 
 body.dark-mode .bookmark-link {
@@ -646,3 +650,4 @@ body.dark-mode .no-results,
 body.dark-mode .loading {
   color: var(--color-text-light) !important;
 }
+

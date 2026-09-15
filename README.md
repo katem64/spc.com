@@ -1,6 +1,6 @@
-# SPC Online - Web Directory
+# SPC Prayer.Com
 
-This is the Capacitor web directory containing your fully offline prayer app.
+This is the `spc.com` Capacitor web directory containing the fully offline prayer app.
 
 ## 🚀 Quick Start
 
@@ -8,16 +8,43 @@ This is the Capacitor web directory containing your fully offline prayer app.
 ```bash
 npx http-server -p 8080
 ```
-Open browser: `http://localhost:8080`
+Open browser: `http://localhost/spc.com/`
 
-**Access Code**: `SPC2025`
+**Access Code**: `spc@nl1ne`
 
 ### Deploy to Capacitor
 From project root:
 ```bash
-npx cap sync
-npx cap open android  # or ios
+.\scripts\sync-capacitor-web.ps1
+npx cap sync android
+npx cap open android
 ```
+
+### Build and Install Android APK
+
+The app can be installed directly on Android phones without Google Play or Google Play Services.
+
+```powershell
+$env:JAVA_HOME="$env:ProgramFiles\Android\Android Studio\jbr"
+Push-Location .\android
+.\gradlew.bat assembleDebug
+Pop-Location
+```
+
+The test APK is created at:
+
+```text
+android/app/build/outputs/apk/debug/app-debug.apk
+```
+
+Copy this APK to an Android phone and open it, or install it over USB:
+
+```powershell
+$adb="$env:LOCALAPPDATA\Android\Sdk\platform-tools\adb.exe"
+& $adb install -r ".\android\app\build\outputs\apk\debug\app-debug.apk"
+```
+
+The debug APK is for testing. Before distributing the app broadly, create a signed release APK with a protected release keystore. A signed release APK can also be distributed directly without Google Play.
 
 ## 📁 Structure
 
@@ -31,12 +58,16 @@ npx cap open android  # or ios
 - **/js** - All JavaScript including access-code.js
 - **/assets** - Images, fonts, vendor libraries
 - **/pages** - All 75 prayer HTML files
+- **/data/marks-examen-index.json** - Offline M.A.R.K.S. Examen data and search index
+- **/assets/images/marks-examen-cover.png** - Official M.A.R.K.S. Examen cover
+- **/android** - Capacitor Android project
+- **/www** - Generated web bundle used by Capacitor
 
 ## 🔑 Access Code
 
-Default: `SPC2025`
+Default: `spc@nl1ne`
 
-To change: Edit `js/access-code.js` line 7
+To change: Edit `js/access-code.js` line 9
 
 To logout: Console → `spcLogout()`
 
@@ -51,6 +82,8 @@ To logout: Console → `spcLogout()`
 - ✅ Bookmarks
 - ✅ Search
 - ✅ Font size adjustment
+- ✅ M.A.R.K.S. Examen search across Marks, weeks, themes, and daily prompts
+- ✅ Direct Android APK installation without Google Play
 
 ## 📱 Mobile Ready
 
@@ -59,6 +92,8 @@ This folder is ready for Capacitor deployment to:
 - iOS
 
 All paths are relative and work offline.
+
+The Android build has been installed and launched successfully on the configured Pixel 6 emulator. A physical Android phone should have a working Android WebView provider. Google Play Services are not required by the app.
 
 ## 🎨 Design
 

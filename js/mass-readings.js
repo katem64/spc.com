@@ -1,4 +1,4 @@
-// Mass Readings Display Module
+﻿// Mass Readings Display Module
 // Shows daily Mass reading citations with online/offline hybrid approach
 
 (function() {
@@ -264,7 +264,7 @@
               Read Full Text (USCCB)
             </button>
           </div>
-          ${updateInfo ? `<div class="data-info"><i class="fas fa-info-circle"></i> ${updateInfo} • Available: 1 year back/forward</div>` : ''}
+          ${updateInfo ? `<div class="data-info"><i class="fas fa-info-circle"></i> ${updateInfo} â€¢ Available: 1 year back/forward</div>` : ''}
         </div>
       </div>
     `;
@@ -435,8 +435,41 @@
       // Open USCCB Bible readings page in new tab
       window.open(`${USCCB_API_BASE}${usccbDate}.cfm`, '_blank');
     } else {
-      alert('Full text requires an internet connection. Please connect to view complete readings.');
+      showOfflineFullTextNotice();
     }
+  }
+
+  function showOfflineFullTextNotice() {
+    const existingNotice = document.getElementById('offline-full-text-notice');
+    if (existingNotice) {
+      existingNotice.classList.add('active');
+      return;
+    }
+
+    const notice = document.createElement('div');
+    notice.className = 'offline-full-text-notice';
+    notice.id = 'offline-full-text-notice';
+    notice.setAttribute('role', 'dialog');
+    notice.setAttribute('aria-modal', 'true');
+    notice.setAttribute('aria-labelledby', 'offline-full-text-title');
+    notice.innerHTML = `
+      <div class="offline-full-text-card">
+        <button class="offline-full-text-close" type="button" aria-label="Close">&times;</button>
+        <i class="fas fa-wifi-slash offline-full-text-icon" aria-hidden="true"></i>
+        <h2 id="offline-full-text-title">Internet connection needed</h2>
+        <p>Full reading text is available from the USCCB website when you are connected to the internet.</p>
+        <p class="offline-full-text-hint">The reading citations shown in this app remain available offline.</p>
+        <button class="offline-full-text-button" type="button">Close</button>
+      </div>
+    `;
+    document.body.appendChild(notice);
+
+    const closeNotice = () => notice.classList.remove('active');
+    notice.addEventListener('click', (event) => {
+      if (event.target === notice || event.target.closest('.offline-full-text-close, .offline-full-text-button')) closeNotice();
+    });
+    notice.classList.add('active');
+    notice.querySelector('.offline-full-text-button').focus();
   }
 
   // Add styles for readings badge and modal
@@ -457,7 +490,7 @@
         letter-spacing: 0.5px;
         text-transform: uppercase;
         color: white;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #9a6c2f 0%, #6b421f 100%);
         border-radius: 10px;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
         cursor: pointer;
@@ -537,7 +570,7 @@
 
       /* Modal Header */
       .readings-modal-header {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #9a6c2f 0%, #6b421f 100%);
         color: white;
         padding: 1.5rem;
         display: flex;
@@ -650,30 +683,30 @@
         padding: 1rem;
         background: #f8f9fa;
         border-radius: 8px;
-        border-left: 3px solid #667eea;
+        border-left: 3px solid #9a6c2f;
         margin-bottom: 1rem;
       }
 
       .dark-mode .reading-item {
         background: #2a2a2a;
-        border-left-color: #667eea;
+        border-left-color: #9a6c2f;
       }
 
       .reading-item.gospel {
-        border-left-color: #764ba2;
+        border-left-color: #6b421f;
         background: linear-gradient(135deg, #f8f9fa 0%, #faf9fc 100%);
       }
 
       .dark-mode .reading-item.gospel {
         background: linear-gradient(135deg, #2a2a2a 0%, #2d2a2f 100%);
-        border-left-color: #764ba2;
+        border-left-color: #6b421f;
       }
 
       .reading-label {
         font-size: 0.75rem;
         font-weight: 600;
         text-transform: uppercase;
-        color: #667eea;
+        color: #9a6c2f;
         margin-bottom: 0.5rem;
         letter-spacing: 0.5px;
       }
@@ -683,7 +716,7 @@
       }
 
       .reading-item.gospel .reading-label {
-        color: #764ba2;
+        color: #6b421f;
       }
 
       .dark-mode .reading-item.gospel .reading-label {
@@ -775,7 +808,7 @@
       }
 
       .btn-view-full {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #9a6c2f 0%, #6b421f 100%);
         color: white;
         border: none;
         padding: 0.75rem 1.75rem;
@@ -829,6 +862,80 @@
       /* Loading and Error States */
       .readings-loading,
       .readings-no-data,
+
+            .offline-full-text-notice {
+              display: none;
+              position: fixed;
+              inset: 0;
+              z-index: 10001;
+              align-items: center;
+              justify-content: center;
+              padding: 1rem;
+              background: rgba(35, 24, 16, 0.62);
+            }
+
+            .offline-full-text-notice.active {
+              display: flex;
+            }
+
+            .offline-full-text-card {
+              position: relative;
+              width: min(100%, 30rem);
+              max-width: 30rem;
+              padding: 2rem;
+              border-radius: 14px;
+              background: var(--color-bg, #faf9f6);
+              color: var(--color-text, #2c3e50);
+              text-align: center;
+              box-shadow: 0 12px 36px rgba(0, 0, 0, 0.28);
+            }
+
+            .offline-full-text-close {
+              position: absolute;
+              top: 0.65rem;
+              right: 0.8rem;
+              border: 0;
+              background: transparent;
+              color: inherit;
+              font-size: 1.8rem;
+              line-height: 1;
+              cursor: pointer;
+            }
+
+            .offline-full-text-icon {
+              margin-bottom: 0.85rem;
+              color: #9a6c2f;
+              font-size: 2rem;
+            }
+
+            .offline-full-text-card h2 {
+              margin-bottom: 0.75rem;
+              font-size: 1.35rem;
+            }
+
+            .offline-full-text-card p {
+              margin-bottom: 0.75rem;
+            }
+
+            .offline-full-text-hint {
+              color: var(--color-text-light, #7f8c8d);
+              font-size: 0.9rem;
+            }
+
+            .offline-full-text-button {
+              margin-top: 0.75rem;
+              padding: 0.65rem 1.5rem;
+              border: 0;
+              border-radius: 8px;
+              background: #6b421f;
+              color: #fff;
+              cursor: pointer;
+            }
+
+            .dark-mode .offline-full-text-card {
+              background: #241b16;
+              color: #f6eee5;
+            }
       .readings-api-message,
       .readings-error {
         text-align: center;
@@ -846,7 +953,7 @@
       }
 
       .readings-loading i {
-        color: #667eea;
+        color: #9a6c2f;
       }
 
       .readings-no-data i {
@@ -1074,7 +1181,7 @@
       const readings = MassReadingsData.getReadingsForDate(dateStr);
       if (readings) {
         // Mark as available in cache (just verify we have the data)
-        console.log(`✓ Readings available for ${dateStr}`);
+        console.log(`âœ“ Readings available for ${dateStr}`);
       }
     }
   }
@@ -1116,3 +1223,4 @@
   }
 
 })();
+

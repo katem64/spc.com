@@ -1,4 +1,4 @@
-// Bookmark System for SPC Online
+﻿// Bookmark System for SPC Prayer.Com
 // Allows users to save and manage favorite prayers
 
 (function() {
@@ -34,7 +34,7 @@
   function getCurrentPageInfo() {
     return {
       url: window.location.pathname,
-      title: document.title.replace('SPC Online', '').replace(/[|-]/g, '').trim() || 'Home',
+      title: document.title.replace('SPC Prayer.Com', '').replace(/[|-]/g, '').trim() || 'Home',
       timestamp: Date.now()
     };
   }
@@ -351,14 +351,14 @@
 
       .dark-mode .bookmark-btn:hover {
         background: #333 !important;
-        border-color: #3498DB !important;
-        color: #3498DB !important;
+        border-color: #9a6c2f !important;
+        color: #9a6c2f !important;
       }
 
       .dark-mode .bookmark-btn.bookmarked {
-        background: #3498DB !important;
+        background: #9a6c2f !important;
         color: white !important;
-        border-color: #3498DB;
+        border-color: #9a6c2f;
       }
 
       .bookmarks-panel {
@@ -401,7 +401,7 @@
 
       .bookmarks-header h3 {
         margin: 0;
-        color: #667eea;
+        color: #9a6c2f;
         display: flex;
         align-items: center;
         gap: 0.5rem;
@@ -423,7 +423,7 @@
       }
 
       .close-panel:hover {
-        color: #667eea;
+        color: #9a6c2f;
         transform: rotate(90deg);
       }
 
@@ -481,7 +481,7 @@
       }
 
       .bookmark-link:hover {
-        color: #667eea;
+        color: #9a6c2f;
       }
 
       .dark-mode .bookmark-link {
@@ -515,7 +515,7 @@
 
       .empty-state i {
         font-size: 4rem;
-        color: #667eea;
+        color: #9a6c2f;
         opacity: 0.3;
         margin-bottom: 1rem;
       }
@@ -610,3 +610,4 @@
   }
 
 })();
+

@@ -4,22 +4,22 @@
 <head>
 
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Prayer companion for the Sisters of St. Paul of Chartres. Access prayers offline anytime.">
-  <meta name="theme-color" content="#667eea">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+  <meta name="description" content="SPC Prayer.Com for the Sisters of St. Paul of Chartres. Access prayers offline anytime.">
+  <meta name="theme-color" content="#6b421f">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="SPC Online">
+  <meta name="apple-mobile-web-app-title" content="SPC Prayer.Com">
 
-  <title>SPC Online - Sisters of St. Paul of Chartres</title>
+  <title>SPC Prayer.Com</title>
 
   <!-- PWA Manifest -->
   <link rel="manifest" href="./manifest.json">
   
   <!-- App Icons -->
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/landing_img.png?v=2">
-  <link rel="icon" type="image/png" sizes="192x192" href="./assets/images/landing_img.png?v=2">
-  <link rel="apple-touch-icon" href="./assets/images/landing_img.png?v=2">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/spccomlogo.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="./assets/images/spccomlogo.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/spc-icon-180.png">
 
   <!-- Bootstrap core CSS -->
   <link href="./assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -33,14 +33,14 @@
   <link href="./css/clean-blog.min.css" rel="stylesheet">
   
   <!-- PWA Enhancement Styles -->
-  <link href="./css/theme.css" rel="stylesheet">
-  <link href="./css/dark-mode.css" rel="stylesheet">
+  <link href="./css/theme.css?v=light2" rel="stylesheet">
+  <link href="./css/dark-mode.css?v=2" rel="stylesheet">
   
   <!-- Modern Theme -->
   <link href="./css/modern-theme.css" rel="stylesheet">
   
   <!-- Universal Navbar Loader -->
-  <script defer src="./js/navbar-loader.js"></script>
+  <script defer src="./js/navbar-loader.js?v=4"></script>
 </head>
 
 <body class="dashboard-container">
@@ -48,8 +48,6 @@
   <!-- Dashboard Header -->
   <div class="dashboard-header">
     <div class="container-modern text-center">
-      <h1>Sisters of St. Paul of Chartres</h1>
-      <p>Your Digital Prayer Companion</p>
     </div>
   </div>
 
@@ -69,9 +67,9 @@
         <span class="action-btn-icon"><i class="fas fa-praying-hands"></i></span>
         <span class="action-btn-label">The Rosary</span>
       </a>
-      <a href="#bookoflife" class="action-btn fade-in-up">
-        <span class="action-btn-icon"><i class="fas fa-book"></i></span>
-        <span class="action-btn-label">Book of Life</span>
+      <a href="#marks-examen" class="action-btn fade-in-up">
+        <span class="action-btn-icon"><i class="fas fa-compass"></i></span>
+        <span class="action-btn-label">M.A.R.K.S. Examen</span>
       </a>
     </div>
 
@@ -133,11 +131,6 @@
           <h3 class="prayer-card-title">Night Prayer</h3>
           <p class="prayer-card-description">End your day in peace and thanksgiving</p>
         </a>
-        <a href="./pages/Angelus.html" class="prayer-card card fade-in-up priority-medium">
-          <div class="prayer-card-icon"><i class="fas fa-bell"></i></div>
-          <h3 class="prayer-card-title">Angelus</h3>
-          <p class="prayer-card-description">The angel of the Lord declared unto Mary</p>
-        </a>
       </div>
     </div>
 
@@ -167,18 +160,13 @@
       </div>
     </div>
 
-    <div id="bookoflife" class="category-section">
-      <h2 class="category-title">The Book of Life</h2>
+    <div id="marks-examen" class="category-section">
+      <h2 class="category-title">M.A.R.K.S. Examen</h2>
       <div class="widget-grid">
-        <a href="./pages/BLwhoarewe.html" class="prayer-card card fade-in-up">
-          <div class="prayer-card-icon"><i class="fas fa-users"></i></div>
-          <h3 class="prayer-card-title">Who Are We</h3>
-          <p class="prayer-card-description">Our identity in Christ</p>
-        </a>
-        <a href="./pages/BLconcordance.html" class="prayer-card card fade-in-up">
-          <div class="prayer-card-icon"><i class="fas fa-book-open"></i></div>
-          <h3 class="prayer-card-title">BL Concordance</h3>
-          <p class="prayer-card-description">Book of Life index</p>
+        <a href="./pages/marks-examen.html" class="prayer-card card fade-in-up featured priority-high">
+          <div class="prayer-card-icon"><i class="fas fa-compass"></i></div>
+          <h3 class="prayer-card-title">Begin the Examen</h3>
+          <p class="prayer-card-description">A daily reflection journey through the 12 SPC Marks</p>
         </a>
       </div>
     </div>
@@ -196,7 +184,7 @@
   <script src="./js/app.js"></script>
   <script src="./js/font-size.js"></script>
   <script src="./js/bookmarks.js"></script>
-  <script src="./js/search.js"></script>
+  <script src="./js/search.js?v=examen2"></script>
 
   <!-- Liturgical Calendar -->
   <script src="./js/liturgical-data.js"></script>
@@ -212,10 +200,13 @@
   <!-- Universal Footer Loader -->
   <script src="./js/footer-loader.js"></script>
   <script src="./js/prayer-tracker.js"></script>
+  <script src="./js/landing-language.js?v=1"></script>
 
 </body>
 
 </html>
+
+
 
 
 

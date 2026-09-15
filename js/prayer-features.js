@@ -1,4 +1,4 @@
-// Prayer Features - Text-to-Speech & Share
+﻿// Prayer Features - Text-to-Speech & Share
 // Adds audio playback and sharing capabilities to prayer pages
 
 (function() {
@@ -8,9 +8,15 @@
   let currentUtterance = null;
   let isPaused = false;
   let isPlaying = false;
+  const ROSARY_PAGES = new Set(['prayer.html', 'joy.html', 'light.html', 'sorrow.html', 'glorious.html']);
 
   // Initialize features on prayer pages only
   function init() {
+    const currentPage = window.location.pathname.split('/').pop().toLowerCase();
+    if (ROSARY_PAGES.has(currentPage)) {
+      return;
+    }
+
     // Check if we're on a prayer page (look for prayer content in various structures)
     const prayerContent = document.querySelector('.card-body, .col-lg-8.col-md-10.mx-auto center, .prayer-text, .card-text');
     console.log('Prayer Features Init - Content found:', prayerContent);
@@ -157,7 +163,7 @@
       }
     }
     
-    // Try getting the main container with paragraphs (for Book of Life pages)
+    // Try getting the main container with paragraphs.
     if (!prayerContent) {
       const mainContainer = document.querySelector('.col-lg-8.col-md-10.mx-auto');
       if (mainContainer) {
@@ -395,7 +401,7 @@
     const prayerURL = window.location.href;
 
     const shareData = {
-      title: `${prayerTitle} - SPC Online`,
+      title: `${prayerTitle} - SPC Prayer.Com`,
       text: `Join me in praying: ${prayerTitle}`,
       url: prayerURL
     };
@@ -515,7 +521,7 @@
         align-items: center;
         gap: 0.5rem;
         padding: 0.75rem 1.5rem;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #9a6c2f 0%, #6b421f 100%);
         color: white;
         border: none;
         border-radius: 12px;
@@ -536,7 +542,7 @@
       }
 
       .feature-btn.active {
-        background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        background: linear-gradient(135deg, #6b421f 0%, #9a6c2f 100%);
         animation: pulse 2s infinite;
       }
 
@@ -561,13 +567,19 @@
         flex-wrap: wrap;
       }
 
+      body.dark-mode .tts-controls {
+        background: #382a1d;
+        border: 1px solid #604a32;
+        color: #fff4df;
+      }
+
       .tts-control-btn {
         width: 40px;
         height: 40px;
         border-radius: 50%;
-        border: 2px solid #667eea;
+        border: 2px solid #9a6c2f;
         background: white;
-        color: #667eea;
+        color: #9a6c2f;
         cursor: pointer;
         transition: all 0.3s ease;
         display: flex;
@@ -576,9 +588,20 @@
       }
 
       .tts-control-btn:hover {
-        background: #667eea;
+        background: #9a6c2f;
         color: white;
         transform: scale(1.1);
+      }
+
+      body.dark-mode .tts-control-btn {
+        border-color: #d8b36a;
+        background: #4a3524;
+        color: #fff4df;
+      }
+
+      body.dark-mode .tts-control-btn:hover {
+        background: #d8b36a;
+        color: #241b14;
       }
 
       .tts-speed-control {
@@ -590,9 +613,19 @@
         border-radius: 8px;
       }
 
+      body.dark-mode .tts-speed-control {
+        background: #4a3524;
+        border: 1px solid #604a32;
+      }
+
       .tts-speed-control label {
         color: var(--text-secondary);
         margin: 0;
+      }
+
+      body.dark-mode .tts-speed-control label,
+      body.dark-mode .tts-speed-control span {
+        color: #fff4df;
       }
 
       .tts-speed-control input[type="range"] {
@@ -711,3 +744,4 @@
   });
 
 })();
+

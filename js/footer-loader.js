@@ -18,16 +18,7 @@
     const isInPagesFolder = currentPath.includes('/pages/');
     const footerFile = isInPagesFolder ? '../footer.html' : './footer.html';
     
-    // Fetch and insert footer (with aggressive cache-busting)
-    const timestamp = new Date().getTime();
-    fetch(footerFile + '?v=' + timestamp, {
-      cache: 'no-store',
-      headers: {
-        'Cache-Control': 'no-cache, no-store, must-revalidate',
-        'Pragma': 'no-cache',
-        'Expires': '0'
-      }
-    })
+    fetch(footerFile)
       .then(response => response.text())
       .then(html => {
         // Remove old footer if exists

@@ -1,6 +1,6 @@
 # PWA Icon Generation Instructions
 
-## Required Icons for SPC Online
+## Required Icons for SPC Prayer.Com
 
 You need to create app icons in the following sizes:
 - 72x72
@@ -136,7 +136,7 @@ Save files as:
 - `icon-384.png`
 - `icon-512.png`
 
-Place all files in the `/spconline/icons/` folder.
+Place all files in the `/spc.com/assets/icons/` folder.
 
 ## Testing Icons
 

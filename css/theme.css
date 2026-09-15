@@ -1,5 +1,5 @@
-/* ================================================
-   SPC Online - Theme Enhancement CSS
+﻿/* ================================================
+   SPC Prayer.Com - Theme Enhancement CSS
    Modernizes design while preserving content
    ================================================ */
 
@@ -7,7 +7,7 @@
 :root {
   --color-primary: #2C3E50;
   --color-secondary: #34495E;
-  --color-accent: #3498DB;
+  --color-accent: #9a6c2f;
   --color-bg: #FFFFFF;
   --color-bg-alt: #F8F9FA;
   --color-text: #2C3E50;
@@ -33,11 +33,23 @@
   gap: 0.75rem;
   justify-content: center;
   padding: 1rem;
+  padding-left: max(1rem, env(safe-area-inset-left));
+  padding-right: max(1rem, env(safe-area-inset-right));
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--color-border);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+#mainNav {
+  padding-top: env(safe-area-inset-top);
+}
+
+.universal-footer {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  padding-left: max(1rem, env(safe-area-inset-left));
+  padding-right: max(1rem, env(safe-area-inset-right));
 }
 
 .dark-mode .pwa-controls {
@@ -211,7 +223,7 @@ body[style*="lightyellow"] {
   font-size: inherit !important;
 }
 
-/* ===== NESTED DROPDOWN SUBMENU (Book of Life) ===== */
+/* ===== NESTED DROPDOWN SUBMENU ===== */
 .dropdown-submenu {
   position: relative;
 }
@@ -295,14 +307,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 2.5rem;
-  border-bottom: 2px solid var(--color-accent);
+  --color-primary: #6b421f;
+  --color-secondary: #805226;
   padding-bottom: 0.75rem;
-  display: inline-block;
-  margin-bottom: 2rem;
-}
-
-h3 {
+  --color-bg: #fffaf0;
+  --color-bg-alt: #f7f1e5;
+  --color-text: #4a3320;
+  --color-text-light: #806544;
+  --color-border: #dfcda9;
   color: var(--color-secondary);
   font-size: 1.5rem;
   font-weight: 500;
@@ -323,7 +335,7 @@ p[style*="text-align: justify"] {
 
 /* ===== UNIVERSAL FOOTER STYLES - MINIMALIST PURPLE ===== */
 .universal-footer {
-  background: #667eea !important;
+  background: #9a6c2f !important;
   color: white !important;
   padding: 0.5rem 0 !important;
   margin-top: auto !important;
@@ -354,6 +366,37 @@ body {
   flex: 1 0 auto !important;
 }
 
+/* Landing page palette: light yellow, warm and readable. */
+body.dashboard-container:not(.dark-mode) {
+  background: #fffbea !important;
+  color: #4a3320 !important;
+}
+
+body.dashboard-container:not(.dark-mode) .dashboard-header {
+  background: #f3e4b8 !important;
+  color: #4a3320 !important;
+  border-bottom: 1px solid #ddc98e;
+}
+
+body.dashboard-container:not(.dark-mode) .card,
+body.dashboard-container:not(.dark-mode) .prayer-card,
+body.dashboard-container:not(.dark-mode) .action-btn {
+  background: #fffdf4 !important;
+  color: #4a3320 !important;
+  border-color: #e4d5a8 !important;
+}
+
+body.dashboard-container:not(.dark-mode) .card p,
+body.dashboard-container:not(.dark-mode) .prayer-card-description,
+body.dashboard-container:not(.dark-mode) .action-btn-label {
+  color: #604b32 !important;
+}
+
+body.dashboard-container:not(.dark-mode) .category-title,
+body.dashboard-container:not(.dark-mode) .gradient-text {
+  color: #704a22 !important;
+}
+
 .footer-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -373,19 +416,20 @@ body {
 }
 
 .footer-credit {
-  font-size: 0.7rem !important;
-  opacity: 0 !important;
-  font-style: italic;
-  margin-top: 0.25rem !important;
-  transition: opacity 0.4s ease;
+  display: inline-block;
+  color: rgba(255, 244, 223, 0.42) !important;
+  font-size: 0.68rem !important;
+  font-style: normal;
+  margin-left: 0.35rem;
+  white-space: nowrap;
 }
 
 .universal-footer:hover .footer-credit {
-  opacity: 0.6 !important;
+  color: rgba(255, 244, 223, 0.55) !important;
 }
 
 .dark-mode .universal-footer {
-  background: #5568d3 !important;
+  background: #805226 !important;
   box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.2) !important;
 }
 
@@ -657,3 +701,4 @@ img {
     display: none !important;
   }
 }
+

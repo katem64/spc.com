@@ -1,21 +1,34 @@
-// Service Worker for SPC Online - Capacitor Version
+﻿// Service Worker for SPC Prayer.Com - Capacitor Version
 // Provides complete offline functionality
 
-const CACHE_NAME = 'spc-capacitor-v46';
-const RUNTIME_CACHE = 'spc-runtime-v46';
+const CACHE_NAME = 'spc-capacitor-v59';
+const RUNTIME_CACHE = 'spc-runtime-v59';
+
+function getCacheKey(request) {
+  const cacheUrl = new URL(request.url);
+  cacheUrl.search = '';
+  return cacheUrl.href;
+}
 
 // Essential files to cache immediately
 const PRECACHE_ASSETS = [
   './',
   './index.html',
   './landing.html',
-  './pages/BLconcordance.html',
+  './pages/marks-examen.html',
+  './pages/examen-foundations.html',
   './css/clean-blog.min.css',
   './css/theme.css',
   './css/dark-mode.css',
   './css/modern-theme.css',
   './css/capacitor-enhancements.css',
+  './css/examen.css',
   './assets/fonts/local-fonts.css',
+  './assets/images/spccomlogo.png',
+  './assets/images/spc-icon-180.png',
+  './assets/images/spc-icon-192.png',
+  './assets/images/spc-icon-512.png',
+  './assets/images/spc-icon-maskable-512.png',
   './js/app.js',
   './js/access-code.js',
   './js/font-size.js',
@@ -23,6 +36,8 @@ const PRECACHE_ASSETS = [
   './js/search.js',
   './js/footer-loader.js',
   './js/navbar-loader.js',
+  './js/global-language.js',
+  './js/landing-language.js',
   './js/prayer-enhancer.js',
   './js/prayer-tracker.js',
   './js/prayer-features.js',
@@ -31,13 +46,17 @@ const PRECACHE_ASSETS = [
   './js/mass-readings-data.js',
   './js/mass-readings.js',
   './js/ux-enhancements.js',
-  './js/bl-concordance.js',
+  './js/examen.js',
   './js/clean-blog.min.js',
-  './data/bl-concordance-index.json',
+  './data/marks-examen-index.json',
+  './data/french-page-manifest.json',
+  './data/prayer-page-manifest.json',
+  './assets/images/marks-examen-cover.png',
   './assets/vendor/jquery/jquery.min.js',
   './assets/vendor/bootstrap/js/bootstrap.bundle.min.js',
   './assets/vendor/bootstrap/css/bootstrap.min.css',
   './navbar.html',
+  './navbar-for-pages.html',
   './footer.html'
 ];
 
@@ -92,7 +111,7 @@ self.addEventListener('fetch', (event) => {
 
   // Strategy: Cache First (for complete offline capability)
   event.respondWith(
-    caches.match(request)
+    caches.match(request, { ignoreSearch: true })
       .then((cachedResponse) => {
         if (cachedResponse) {
           return cachedResponse;
@@ -128,7 +147,7 @@ self.addEventListener('fetch', (event) => {
             ) {
               caches.open(RUNTIME_CACHE)
                 .then((cache) => {
-                  cache.put(request, responseToCache);
+                  cache.put(getCacheKey(request), responseToCache);
                 });
             }
 
@@ -136,8 +155,13 @@ self.addEventListener('fetch', (event) => {
           })
           .catch((error) => {
             console.error('[ServiceWorker] Fetch failed:', error);
-            // Return offline page or fallback
-            return caches.match('./index.html');
+            if (request.mode === 'navigate') {
+              return caches.match('./index.html', { ignoreSearch: true });
+            }
+            return new Response('', {
+              status: 503,
+              statusText: 'Offline resource unavailable'
+            });
           });
       })
   );
@@ -158,6 +182,24 @@ self.addEventListener('message', (event) => {
       }).then(() => {
         return self.clients.claim();
       })
+    );
+  }
+
+  if (event.data && event.data.type === 'CACHE_PRAYERS') {
+    const urls = Array.isArray(event.data.urls) ? event.data.urls : [];
+    event.waitUntil(
+      caches.open(RUNTIME_CACHE).then((cache) => Promise.all(
+        urls.map((url) => {
+          const absoluteUrl = new URL(url, self.registration.scope);
+          if (absoluteUrl.origin !== self.location.origin) return Promise.resolve();
+          return fetch(absoluteUrl.href)
+            .then((response) => {
+              if (response.ok) return cache.put(getCacheKey(new Request(absoluteUrl.href)), response);
+              return undefined;
+            })
+            .catch(() => undefined);
+        })
+      ))
     );
   }
 
@@ -199,3 +241,4 @@ self.addEventListener('periodicsync', (event) => {
 });
 
 console.log('[ServiceWorker] Loaded successfully');
+

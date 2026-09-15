@@ -1,6 +1,6 @@
 {
-  "appId": "com.spc.online",
-  "appName": "SPC Online",
+  "appId": "com.spc.companion",
+  "appName": "SPC Prayer.Com",
   "webDir": "www",
   "bundledWebRuntime": false,
   "server": {
@@ -13,7 +13,7 @@
     "SplashScreen": {
       "launchShowDuration": 2000,
       "launchAutoHide": true,
-      "backgroundColor": "#667eea",
+      "backgroundColor": "#6b421f",
       "androidSplashResourceName": "splash",
       "androidScaleType": "CENTER_CROP",
       "showSpinner": false,
@@ -23,7 +23,7 @@
     },
     "StatusBar": {
       "style": "light",
-      "backgroundColor": "#667eea"
+      "backgroundColor": "#6b421f"
     },
     "Keyboard": {
       "resize": "body",

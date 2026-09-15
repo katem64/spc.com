@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="description" content="SPC Online - Prayer Companion for Sisters of St. Paul of Chartres">
-  <meta name="theme-color" content="#667eea">
+  <meta name="description" content="SPC Prayer.Com for Sisters of St. Paul of Chartres">
+  <meta name="theme-color" content="#6b421f">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="SPC Online">
+  <meta name="apple-mobile-web-app-title" content="SPC Prayer.Com">
   
-  <title>SPC Online - Sisters of St. Paul of Chartres</title>
+  <title>SPC Prayer.Com</title>
   
   <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/landing_img.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="./assets/images/landing_img.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/landing_img.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/spccomlogo.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="./assets/images/spc-icon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/spc-icon-180.png">
   
   <!-- PWA Manifest -->
   <link rel="manifest" href="./manifest.json">
@@ -26,7 +26,7 @@
   <link rel="stylesheet" href="./assets/fonts/local-fonts.css">
   
   <!-- Capacitor Enhancements -->
-  <link rel="stylesheet" href="./css/capacitor-enhancements.css">
+  <link rel="stylesheet" href="./css/capacitor-enhancements.css?v=4">
   
   <style>
     * {
@@ -44,7 +44,7 @@
     /* Main Landing Page Styles */
     .landing-container {
       min-height: 100vh;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      background: linear-gradient(135deg, #6b421f 0%, #9a6c2f 50%, #d8b36a 100%);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -144,10 +144,27 @@
       margin-right: auto;
       text-shadow: 0 2px 10px rgba(0,0,0,0.15);
     }
+
+    .brand-kicker {
+      margin-bottom: 0.45rem;
+      color: rgba(255,255,255,0.95);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .brand-description {
+      max-width: 34rem;
+      margin: 0 auto 1.1rem;
+      color: rgba(255,255,255,0.92);
+      font-size: 1rem;
+      line-height: 1.5;
+    }
     
     .btn-enter {
       background: white;
-      color: #764ba2;
+      color: #6b421f;
       padding: 1.2rem 3.5rem;
       font-size: 1.2rem;
       font-weight: 600;
@@ -250,7 +267,7 @@
   <div id="access-screen">
     <div class="access-card">
       <div class="access-card-logo">
-        <img src="./assets/images/landing_img.png" alt="SPC Logo">
+        <img src="./assets/images/spccomlogo.png" alt="SPC Prayer.Com logo">
       </div>
       <h2>Welcome Sisters</h2>
       <p>Please enter your access code to continue</p>
@@ -283,11 +300,13 @@
       
       <!-- Landing Image -->
       <div class="illustration">
-        <img src="./assets/images/landing_img.png" alt="Sisters of St. Paul of Chartres" class="landing-image">
+        <img src="./assets/images/spccomlogo.png" alt="SPC Prayer.Com logo" class="landing-image">
       </div>
       
       <!-- Content -->
       <div class="content">
+        <p class="brand-kicker">SPC Prayer.Com</p>
+        <p class="brand-description">Sisters of St. Paul of Chartres Prayer Companion</p>
         <h1>Pray with Us</h1>
         <p class="tagline">Sometimes, all it takes is just one prayer to change everything.</p>
         <a href="./landing.html" class="btn-enter ripple">Begin Prayer</a>

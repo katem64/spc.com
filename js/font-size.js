@@ -1,4 +1,4 @@
-// Font Size Control System
+﻿// Font Size Control System
 // Allows users to adjust text size for better readability
 
 (function() {
@@ -207,8 +207,8 @@
 
       .dark-mode .font-size-btn:hover {
         background: #333;
-        border-color: #3498DB;
-        color: #3498DB;
+        border-color: #9a6c2f;
+        color: #9a6c2f;
       }
 
       .font-size-btn.active {
@@ -219,13 +219,13 @@
       }
 
       .dark-mode .font-size-btn.active {
-        background: #3498DB;
+        background: #9a6c2f;
         color: white;
-        border-color: #3498DB;
+        border-color: #9a6c2f;
       }
 
       .font-size-btn:focus {
-        outline: 2px solid #667eea;
+        outline: 2px solid #9a6c2f;
         outline-offset: 2px;
       }
 
@@ -315,3 +315,4 @@
   }
 
 })();
+

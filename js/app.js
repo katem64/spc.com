@@ -1,4 +1,4 @@
-// SPC Online - Main App Controller
+﻿// SPC Prayer.Com - Main App Controller
 // Initializes PWA and coordinates all features
 
 (function() {
@@ -25,8 +25,11 @@
     }
 
     try {
-      const registration = await navigator.serviceWorker.register('./sw.js', {
-        scope: './'
+      const isNestedPage = window.location.pathname.includes('/pages/');
+      const swPath = isNestedPage ? '../sw.js' : './sw.js';
+      const swScope = isNestedPage ? '../' : './';
+      const registration = await navigator.serviceWorker.register(swPath, {
+        scope: swScope
       });
 
       console.log('Service Worker registered successfully:', registration.scope);
@@ -163,7 +166,7 @@
           <i class="fas fa-download"></i>
         </div>
         <div class="install-text">
-          <strong>Install SPC Online</strong>
+          <strong>Install SPC Prayer.Com</strong>
           <p>Access prayers offline anytime</p>
         </div>
       </div>
@@ -335,8 +338,8 @@
       .dark-mode .search-btn:hover,
       .dark-mode .bookmark-btn:hover {
         background: #333;
-        border-color: #3498DB;
-        color: #3498DB;
+        border-color: #9a6c2f;
+        color: #9a6c2f;
       }
 
       .install-banner,
@@ -381,7 +384,7 @@
       .install-icon {
         width: 48px;
         height: 48px;
-        background: #667eea;
+        background: #9a6c2f;
         color: white;
         border-radius: 8px;
         display: flex;
@@ -391,7 +394,7 @@
       }
 
       .dark-mode .install-icon {
-        background: #764ba2;
+        background: #6b421f;
         color: white;
       }
 
@@ -412,7 +415,7 @@
 
       .install-btn,
       .update-btn {
-        background: #667eea;
+        background: #9a6c2f;
         color: white;
         border: none;
         padding: 0.6rem 1.2rem;
@@ -424,7 +427,7 @@
 
       .install-btn:hover,
       .update-btn:hover {
-        background: #764ba2;
+        background: #6b421f;
         transform: scale(1.05);
       }
 
@@ -452,13 +455,13 @@
 
       .dismiss-install:hover,
       .dismiss-btn:hover {
-        color: #667eea;
+        color: #9a6c2f;
         transform: rotate(90deg);
       }
 
       .dark-mode .dismiss-install:hover,
       .dark-mode .dismiss-btn:hover {
-        color: #764ba2;
+        color: #6b421f;
       }
 
       .sr-only {
@@ -516,17 +519,58 @@
 
   // Cache all prayers for offline use
   async function cacheAllPrayers() {
-    if (!navigator.serviceWorker.controller) return;
+    if (!('serviceWorker' in navigator)) return;
+    const registration = await navigator.serviceWorker.ready;
+    const worker = registration.active;
+    if (!worker) return;
 
-    // Get all prayer URLs
-    const prayerUrls = [
-      './landing.html',
-      // Add more URLs as needed - the service worker will cache them as they're visited
-    ];
+    const prayerUrls = ['./landing.html'];
+    const isNestedPage = window.location.pathname.includes('/pages/');
+    const appRoot = isNestedPage ? '../' : './';
+    const manifestPath = `${appRoot}data/prayer-page-manifest.json`;
 
-    navigator.serviceWorker.controller.postMessage({
+    try {
+      const response = await fetch(manifestPath);
+      if (response.ok) {
+        const pageNames = await response.json();
+        pageNames.forEach((pageName) => prayerUrls.push(`${appRoot}pages/${pageName}`));
+      }
+    } catch (error) {
+    }
+
+    document.querySelectorAll('a[href]').forEach((link) => {
+      try {
+        const url = new URL(link.href, window.location.href);
+        if (url.origin === window.location.origin && url.pathname.endsWith('.html')) {
+          url.hash = '';
+          url.search = '';
+          prayerUrls.push(url.href);
+        }
+      } catch (error) {
+      }
+    });
+
+    const pageResources = await Promise.all(prayerUrls.map(async (pageUrl) => {
+      try {
+        const response = await fetch(pageUrl);
+        if (!response.ok || !response.headers.get('content-type')?.includes('text/html')) return [];
+        const documentText = await response.text();
+        const parsedDocument = new DOMParser().parseFromString(documentText, 'text/html');
+        return [...parsedDocument.querySelectorAll('[src], [href]')].map((element) => element.src || element.href).filter((resourceUrl) => {
+          try {
+            return new URL(resourceUrl).origin === window.location.origin;
+          } catch (error) {
+            return false;
+          }
+        });
+      } catch (error) {
+        return [];
+      }
+    }));
+
+    worker.postMessage({
       type: 'CACHE_PRAYERS',
-      urls: prayerUrls
+      urls: [...new Set(prayerUrls.concat(pageResources.flat()))]
     });
   }
 
@@ -534,21 +578,21 @@
   function logAppInfo() {
     const support = checkPWASupport();
     console.log(`
-╔════════════════════════════════════════════════╗
-║   SPC Online - Prayer Companion               ║
-║   Version: ${APP_VERSION}                           ║
-║                                                ║
-║   PWA Support:                                 ║
-║   - Service Worker: ${support.serviceWorker ? '✓' : '✗'}                    ║
-║   - Local Storage: ${support.localStorage ? '✓' : '✗'}                     ║
-║   - Notifications: ${support.notifications ? '✓' : '✗'}                     ║
-╚════════════════════════════════════════════════╝
+â•”â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•—
+â•‘   SPC Prayer.Com - Prayer Companion               â•‘
+â•‘   Version: ${APP_VERSION}                           â•‘
+â•‘                                                â•‘
+â•‘   PWA Support:                                 â•‘
+â•‘   - Service Worker: ${support.serviceWorker ? 'âœ“' : 'âœ—'}                    â•‘
+â•‘   - Local Storage: ${support.localStorage ? 'âœ“' : 'âœ—'}                     â•‘
+â•‘   - Notifications: ${support.notifications ? 'âœ“' : 'âœ—'}                     â•‘
+â•šâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
     `);
   }
 
   // Initialize app
   async function init() {
-    console.log('Initializing SPC Online...');
+    console.log('Initializing SPC Prayer.Com...');
     logAppInfo();
 
     // Register service worker
@@ -563,7 +607,7 @@
     // Cache all prayers in background
     setTimeout(cacheAllPrayers, 3000);
 
-    console.log('SPC Online initialized successfully');
+    console.log('SPC Prayer.Com initialized successfully');
   }
 
   // Expose public API
@@ -586,7 +630,7 @@
 
   // Handle app installation
   window.addEventListener('appinstalled', () => {
-    console.log('SPC Online has been installed!');
+    console.log('SPC Prayer.Com has been installed!');
     const banner = document.querySelector('.install-banner');
     if (banner) banner.remove();
   });
@@ -624,7 +668,7 @@
           position: fixed;
           bottom: 2rem;
           right: 2rem;
-          background: #3498DB;
+          background: #9a6c2f;
           color: white;
           padding: 1rem 1.5rem;
           border-radius: 8px;
@@ -656,7 +700,7 @@
     }
   }
 
-  // Handle nested dropdown (Book of Life submenu)
+  // Handle nested dropdown submenus.
   function initNestedDropdowns() {
     document.addEventListener('DOMContentLoaded', function() {
       // Handle desktop hover for nested dropdowns
@@ -683,3 +727,4 @@
   initNestedDropdowns();
 
 })();
+

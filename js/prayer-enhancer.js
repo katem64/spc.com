@@ -1,4 +1,4 @@
-// Universal Prayer Page Enhancer
+﻿// Universal Prayer Page Enhancer
 // Automatically wraps prayer content in modern card layout
 (function() {
   'use strict';
@@ -6,6 +6,7 @@
   function enhancePrayerPage() {
     // Check if we're on a prayer page (not index, landing, or test pages)
     const currentPage = window.location.pathname.split('/').pop();
+    const sourcePage = currentPage.replace('.fr.html', '.html');
     if (currentPage === 'index.html' || currentPage === 'landing.html' || 
         currentPage === '' || currentPage.includes('test') || 
         currentPage === 'navbar.html' || currentPage === 'footer.html') {
@@ -24,7 +25,9 @@
     }
 
     // Find the main content container
-    const container = document.querySelector('.container');
+    const container = Array.from(document.querySelectorAll('.container')).find((candidate) => {
+      return !candidate.closest('.masthead') && candidate.querySelector('.col-lg-8.col-md-10.mx-auto');
+    });
     if (!container) return;
 
     // Check if already enhanced
@@ -65,17 +68,15 @@
       'PrayertoSt.Michael.html': 'Prayer to St. Michael',
       'PrayerforPeace.html': 'Prayer for Peace',
       'TheChapletofDivineMercy.html': 'The Chaplet of Divine Mercy',
+      'VeniCreatorSpiritus.html': 'Veni Creator Spiritus',
       'joy.html': 'The Mysteries of Joy',
       'light.html': 'The Mysteries of Light',
       'sorrow.html': 'The Mysteries of Sorrow',
       'glorious.html': 'The Mysteries of Glory',
-      'BLwhoarewe.html': 'Who Are WE',
-      'BLnatureandmission.html': 'Nature & Mission',
-      'BLlifeofconsecration.html': 'Life of Consecration'
     };
     
     // Get the page title from the mapping
-    let pageTitle = prayerTitles[currentPage] || '';
+    let pageTitle = prayerTitles[sourcePage] || '';
     
     // If extraction fails, use masthead h1 or document title
     if (!pageTitle) {
@@ -83,7 +84,7 @@
       if (h1) {
         pageTitle = h1.textContent.trim();
       } else {
-        pageTitle = document.title.replace('SPC Online', '').replace(/[-|]/g, '').trim() || 'Prayer';
+        pageTitle = document.title.replace('SPC Prayer.Com', '').replace(/[-|]/g, '').trim() || 'Prayer';
       }
     }
 
@@ -127,3 +128,4 @@
     enhancePrayerPage();
   }
 })();
+

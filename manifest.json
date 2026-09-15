@@ -1,25 +1,31 @@
 {
-  "name": "SPC Online - Sisters of St. Paul of Chartres",
-  "short_name": "SPC Online",
-  "description": "Prayer companion for the Sisters of St. Paul of Chartres - Philippine Province",
+  "name": "SPC Prayer.Com",
+  "short_name": "SPC Prayer.Com",
+  "description": "SPC Prayer.Com for the Sisters of St. Paul of Chartres - Philippine Province",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#FAF9F6",
-  "theme_color": "#667eea",
+  "theme_color": "#6b421f",
   "icons": [
     {
-      "src": "./assets/images/landing_img.png",
+      "src": "./assets/images/spc-icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
-      "src": "./assets/images/landing_img.png",
+      "src": "./assets/images/spc-icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "./assets/images/spc-icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
   "categories": ["lifestyle", "books"],
@@ -29,21 +35,21 @@
       "short_name": "Morning",
       "description": "Prayer upon Rising",
       "url": "./pages/morning.html",
-      "icons": [{ "src": "./assets/images/landing_img.png", "sizes": "96x96" }]
+      "icons": [{ "src": "./assets/images/spc-icon-192.png", "sizes": "192x192" }]
     },
     {
       "name": "Rosary",
       "short_name": "Rosary",
       "description": "Pray the Holy Rosary",
       "url": "./pages/prayer.html",
-      "icons": [{ "src": "./assets/images/landing_img.png", "sizes": "96x96" }]
+      "icons": [{ "src": "./assets/images/spc-icon-192.png", "sizes": "192x192" }]
     },
     {
       "name": "Night Prayer",
       "short_name": "Night",
       "description": "Prayer before Retiring",
       "url": "./pages/night.html",
-      "icons": [{ "src": "./assets/images/landing_img.png", "sizes": "96x96" }]
+      "icons": [{ "src": "./assets/images/spc-icon-192.png", "sizes": "192x192" }]
     }
   ],
   "prefer_related_applications": false
