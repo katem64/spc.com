@@ -30,7 +30,6 @@ const PRECACHE_ASSETS = [
   './assets/images/spc-icon-512.png',
   './assets/images/spc-icon-maskable-512.png',
   './js/app.js',
-  './js/access-code.js',
   './js/font-size.js',
   './js/bookmarks.js',
   './js/search.js',

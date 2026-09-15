@@ -10,8 +10,6 @@ npx http-server -p 8080
 ```
 Open browser: `http://localhost/spc.com/`
 
-**Access Code**: `spc@nl1ne`
-
 ### Deploy to Capacitor
 From project root:
 ```bash
@@ -48,28 +46,20 @@ The debug APK is for testing. Before distributing the app broadly, create a sign
 
 ## 📁 Structure
 
-- **index.html** - Access code screen (entry point)
+- **index.html** - Public prayer landing screen (entry point)
 - **landing.html** - Main dashboard after login
 - **navbar.html** - Navigation menu (loaded dynamically)
 - **footer.html** - Footer (loaded dynamically)
 - **manifest.json** - PWA/Capacitor manifest
 - **sw.js** - Service worker for offline support
 - **/css** - All stylesheets
-- **/js** - All JavaScript including access-code.js
+- **/js** - Application JavaScript
 - **/assets** - Images, fonts, vendor libraries
 - **/pages** - All 75 prayer HTML files
 - **/data/marks-examen-index.json** - Offline M.A.R.K.S. Examen data and search index
 - **/assets/images/marks-examen-cover.png** - Official M.A.R.K.S. Examen cover
 - **/android** - Capacitor Android project
 - **/www** - Generated web bundle used by Capacitor
-
-## 🔑 Access Code
-
-Default: `spc@nl1ne`
-
-To change: Edit `js/access-code.js` line 9
-
-To logout: Console → `spcLogout()`
 
 ## ✅ Features
 
