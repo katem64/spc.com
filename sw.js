@@ -120,8 +120,8 @@ self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
 
-  // Skip cross-origin requests
-  if (url.origin !== location.origin) {
+  // Never intercept cross-origin or non-GET requests.
+  if (url.origin !== location.origin || request.method !== 'GET') {
     return;
   }
 

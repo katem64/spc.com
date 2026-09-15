@@ -3,12 +3,6 @@
   "appName": "SPC Prayer.Com",
   "webDir": "www",
   "bundledWebRuntime": false,
-  "server": {
-    "androidScheme": "https",
-    "allowNavigation": [
-      "*"
-    ]
-  },
   "plugins": {
     "SplashScreen": {
       "launchShowDuration": 2000,

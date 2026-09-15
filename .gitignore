@@ -1,6 +1,25 @@
 node_modules/
 www/
 
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.keystore
+credentials.json
+secrets.json
+
+# Logs, archives, and local backups
+*.log
+*.bak
+*.tmp
+*.zip
+*.tar
+*.tar.gz
+
 # Capacitor and Android generated output
 android/.gradle/
 android/build/
