@@ -1,8 +1,8 @@
 ﻿// Service Worker for SPC Prayer.Com - Capacitor Version
 // Provides complete offline functionality
 
-const CACHE_NAME = 'spc-capacitor-v59';
-const RUNTIME_CACHE = 'spc-runtime-v59';
+const CACHE_NAME = 'spc-capacitor-v60';
+const RUNTIME_CACHE = 'spc-runtime-v60';
 
 function getCacheKey(request) {
   const cacheUrl = new URL(request.url);
@@ -109,7 +109,25 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Strategy: Cache First (for complete offline capability)
+  // Navigation uses the current published page first, with offline fallback.
+  if (request.mode === 'navigate') {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          if (response.ok) {
+            const responseToCache = response.clone();
+            caches.open(RUNTIME_CACHE).then((cache) => {
+              cache.put(getCacheKey(request), responseToCache);
+            });
+          }
+          return response;
+        })
+        .catch(() => caches.match('./index.html', { ignoreSearch: true }))
+    );
+    return;
+  }
+
+  // Other assets remain cache-first for offline functionality.
   event.respondWith(
     caches.match(request, { ignoreSearch: true })
       .then((cachedResponse) => {
