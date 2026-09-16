@@ -29,18 +29,25 @@
       const swPath = isNestedPage ? '../sw.js' : './sw.js';
       const swScope = isNestedPage ? '../' : './';
       const registration = await navigator.serviceWorker.register(swPath, {
-        scope: swScope
+        scope: swScope,
+        updateViaCache: 'none'
       });
 
       console.log('Service Worker registered successfully:', registration.scope);
 
+      // Check if there is an update waiting
+      if (registration.waiting && navigator.serviceWorker.controller) {
+        showUpdateNotification();
+      }
+
       // Check for updates
       registration.addEventListener('updatefound', () => {
         const newWorker = registration.installing;
+        if (!newWorker) return;
         console.log('Service Worker update found');
 
         newWorker.addEventListener('statechange', () => {
-          if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+          if (newWorker.state === 'installed' && navigator.serviceWorker.controller && registration.waiting) {
             showUpdateNotification();
           }
         });
@@ -55,6 +62,9 @@
 
   // Show update notification
   function showUpdateNotification() {
+    if (document.querySelector('.update-notification')) {
+      return;
+    }
     const notification = document.createElement('div');
     notification.className = 'update-notification';
     notification.innerHTML = `
@@ -78,6 +88,8 @@
     if (navigator.serviceWorker.controller) {
       navigator.serviceWorker.controller.postMessage({ type: 'SKIP_WAITING' });
     }
+    const notif = document.querySelector('.update-notification');
+    if (notif) notif.remove();
     window.location.reload();
   }
 
