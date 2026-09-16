@@ -1,8 +1,8 @@
 ﻿// Service Worker for SPC Prayer.Com - Capacitor Version
 // Provides complete offline functionality
 
-const CACHE_NAME = 'spc-capacitor-v64';
-const RUNTIME_CACHE = 'spc-runtime-v64';
+const CACHE_NAME = 'spc-capacitor-v65';
+const RUNTIME_CACHE = 'spc-runtime-v65';
 
 function getCacheKey(request) {
   const cacheUrl = new URL(request.url);
